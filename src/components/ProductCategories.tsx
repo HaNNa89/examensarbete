@@ -1,4 +1,4 @@
-import { Flex, HStack, Text } from "@chakra-ui/layout";
+import { Box, Flex, HStack } from "@chakra-ui/layout";
 import { useState } from "react";
 
 function ProductCategories({
@@ -15,18 +15,27 @@ function ProductCategories({
 		onSelectCategory(category);
 	};
 	return (
-		<Flex>
-			<Flex justifyContent="center">
+		<Flex justifyContent="center">
+			<Flex>
 				<HStack>
 					{categories.map((category, index) => (
-						<Text
+						<Box
+							mt={6}
+							py={1}
+							px={6}
 							key={index}
 							onClick={() => handleCategoryClick(category)}
 							cursor="pointer"
-							fontWeight={currentCategory === category ? "bold" : "normal"}
+							fontSize={18}
+							border="1px"
+							_hover={{
+								bg: "whiteAlpha.200",
+								borderWidth: "2px",
+								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+							}}
 						>
 							{category}
-						</Text>
+						</Box>
 					))}
 				</HStack>
 			</Flex>
