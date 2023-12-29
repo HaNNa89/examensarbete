@@ -21,6 +21,7 @@ function Header() {
 					<InputRightElement>
 						<IconButton
 							icon={<FaSearch />}
+							colorScheme="white"
 							aria-label="search"
 							size="xs"
 							fontSize={20}
