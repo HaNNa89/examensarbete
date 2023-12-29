@@ -9,7 +9,11 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { GoHeart } from 'react-icons/go';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
+import {
+  useFavoritesContext,
+  useToggleFavorite,
+} from '../hooks/useFavoritesContex';
 
 interface Product {
   img: string;
@@ -21,8 +25,19 @@ function ProductCard({ product }: { product: Product }) {
   const [showOverlay, setShowOverlay] = useState(false);
   const { img, title, price } = product;
 
+  const { favoriteProducts } = useFavoritesContext();
+  const toggleProductFavorite = useToggleFavorite();
+
+  const isProductLiked = favoriteProducts.some(
+    (favProduct) => favProduct.title === title
+  );
+
   const handleToggleLike = () => {
-    // Implementera logik för hjärtikonen här lägg till eller ta bort från "gillade" produkter
+    const isLiked = favoriteProducts.some(
+      (favProduct) => favProduct.title === title
+    );
+
+    toggleProductFavorite({ title, img, price, isLiked });
   };
 
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
@@ -73,8 +88,8 @@ function ProductCard({ product }: { product: Product }) {
                   </Text>
                 </Box>
                 <IconButton
-                  icon={<GoHeart />} /*{ ? <GoHeartFill /> : <GoHeart /> }*/
-                  aria-label="Like"
+                  icon={isProductLiked ? <GoHeartFill /> : <GoHeart />}
+                  aria-label={isProductLiked ? 'Unlike' : 'Like'}
                   fontSize="1.5rem"
                   w="fit-content"
                   bg="none"
@@ -120,8 +135,8 @@ function ProductCard({ product }: { product: Product }) {
                 </Text>
               </Box>
               <IconButton
-                icon={<GoHeart />} /*{ ? <GoHeartFill /> : <GoHeart /> }*/
-                aria-label="Like"
+                icon={isProductLiked ? <GoHeartFill /> : <GoHeart />}
+                aria-label={isProductLiked ? 'Unlike' : 'Like'}
                 fontSize="1.5rem"
                 w="fit-content"
                 bg="none"
