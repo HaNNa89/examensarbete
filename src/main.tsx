@@ -1,11 +1,13 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import "@fontsource/imprima";
+import "@fontsource/indie-flower";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
-	createBrowserRouter,
-	createRoutesFromElements,
 	Route,
 	RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
 } from "react-router-dom";
 import App from "./App.tsx";
 import Admin from "./pages/Admin.tsx";
@@ -15,6 +17,21 @@ import Favorites from "./pages/Favorites.tsx";
 import Home from "./pages/Home.tsx";
 import OrderConfirmation from "./pages/OrderConfirmation.tsx";
 import SearchResult from "./pages/SearchResult.tsx";
+const theme = extendTheme({
+	styles: {
+		global: {
+			body: {
+				backgroundColor: "#1A1A1C",
+				color: "white",
+				margin: 0,
+			},
+		},
+	},
+	fonts: {
+		heading: `'Indie Flower', sans-serif`,
+		body: `'Imprima', sans-serif`,
+	},
+});
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -32,7 +49,7 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<ChakraProvider>
+		<ChakraProvider theme={theme}>
 			<RouterProvider router={router} />
 		</ChakraProvider>
 	</React.StrictMode>
