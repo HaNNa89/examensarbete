@@ -89,6 +89,23 @@ function Home() {
 					</Box>
 				</Center>
 			</Box>
+
+			<Flex direction="column" align="center">
+				<Box maxW="600px">
+					<Text fontSize="25px" py={6}>
+						Welcome to Café O'Neil
+					</Text>
+					<Text fontSize="18px">
+						An oasis of coziness and homeliness nestled in the heart of the
+						city. We invite you to a warm and inviting atmosphere where each
+						visit feels like coming home. With our passion for quality coffee,
+						homemade delights, and personalized service, we aim to create
+						memorable moments for every guest. Explore our selection of
+						delightful pastries, savor our meticulously brewed coffee, and
+						unwind in Café O'Neil's charming ambiance. Welcome home to us.
+					</Text>
+				</Box>
+			</Flex>
 		</>
 	);
 }
