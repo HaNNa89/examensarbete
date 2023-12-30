@@ -1,8 +1,11 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 interface Product {
   title: string;
+  img: string;
+  price: number;
+  isLiked: boolean;
 }
 
 type FavoritesContextType = {
@@ -68,4 +71,5 @@ const FavoritesContextProvider: React.FC<{ children: React.ReactNode }> =
     );
   };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { FavoritesContextProvider, useFavoritesContext, useToggleFavorite };

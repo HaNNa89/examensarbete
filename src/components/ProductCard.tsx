@@ -13,7 +13,7 @@ import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
   useFavoritesContext,
   useToggleFavorite,
-} from '../hooks/useFavoritesContex';
+} from '../hooks/useFavoritesContext';
 
 interface Product {
   img: string;
