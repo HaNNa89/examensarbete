@@ -36,10 +36,10 @@ function Home() {
 					<Heading
 						mt={4}
 						fontSize={{
-							base: "28px",
-							sm: "38px",
-							md: "48px",
-							lg: "58px",
+							base: "20px",
+							sm: "30px",
+							md: "40px",
+							lg: "50px",
 						}}
 					>
 						Café o´neil
@@ -75,6 +75,7 @@ function Home() {
 				</Box>
 			</Flex>
 			<ProductCategories onSelectCategory={setCurrentCategory} />
+
 			<Box mx="auto" maxW="1200px" px="1rem">
 				<Center>
 					<Box w="100%" mt="2rem">
