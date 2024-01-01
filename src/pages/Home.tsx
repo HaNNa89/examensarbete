@@ -96,6 +96,21 @@ function Home() {
 					</Box>
 				</Center>
 			</Box>
+
+			<Flex direction="column" align="center" py={20} px={24}>
+				<Text fontSize={{ base: "20px", md: "25px" }} mb={4}>
+					Welcome to Café O'Neil
+				</Text>
+				<Text fontSize={{ base: "16px", md: "18px" }}>
+					An oasis of coziness and homeliness nestled in the heart of the city.
+					We invite you to a warm and inviting atmosphere where each visit feels
+					like coming home. With our passion for quality coffee, homemade
+					delights, and personalized service, we aim to create memorable moments
+					for every guest. Explore our selection of delightful pastries, savor
+					our meticulously brewed coffee, and unwind in Café O'Neil's charming
+					ambiance. Welcome home to us.
+				</Text>
+			</Flex>
 		</>
 	);
 }
