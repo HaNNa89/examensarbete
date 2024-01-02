@@ -1,11 +1,12 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Center } from '@chakra-ui/react';
+import CheckoutCard from '../components/CheckoutCard';
 
 function Checkout() {
-	return (
-		<Flex>
-			<Heading>Checkout!</Heading>
-		</Flex>
-	);
+  return (
+    <Center>
+      <CheckoutCard />
+    </Center>
+  );
 }
 
 export default Checkout;
