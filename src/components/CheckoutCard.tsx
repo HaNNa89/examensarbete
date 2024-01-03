@@ -1,7 +1,9 @@
 import { Box, Flex, IconButton, Image, Text } from '@chakra-ui/react';
 import { CiCircleMinus, CiCirclePlus, CiTrash } from 'react-icons/ci';
+import { MOCK_PRODUCTS } from '../../data/mock';
 
 function CheckoutCard() {
+  const product = MOCK_PRODUCTS[0];
   return (
     <Flex alignItems="flex-start" m={['2', '8', '12']} gap={['0', '8', '24']}>
       <Box
@@ -9,17 +11,15 @@ function CheckoutCard() {
         height={['11rem', '15rem', '15rem']}
       >
         <Image
-          src={
-            'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D'
-          }
-          alt={''}
+          src={product.img}
+          alt={product.title}
           objectFit="cover"
           width="100%"
           height="100%"
         />
       </Box>
-      <Text m="2">Titel</Text>
-      <Text m="2">Pris</Text>
+      <Text m="2">{product.title}</Text>
+      <Text m="2">{product.price}kr</Text>
       <Flex alignItems="center">
         <IconButton
           icon={<CiCirclePlus />}
