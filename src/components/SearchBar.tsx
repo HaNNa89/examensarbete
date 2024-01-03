@@ -18,7 +18,7 @@ interface ProductItems {
 }
 
 function SearchBar() {
-	const [searchProduct, setSearchproduct] = useState("");
+	const [searchProduct, setSearchProduct] = useState("");
 	const [searchResult, setSearchResult] = useState<ProductItems[]>([]);
 
 	useEffect(() => {
@@ -34,7 +34,7 @@ function SearchBar() {
 	}, [searchProduct]);
 
 	const handleCloseSearchResult = () => {
-		setSearchproduct("");
+		setSearchProduct("");
 		setSearchResult([]);
 	};
 
@@ -45,7 +45,7 @@ function SearchBar() {
 					placeholder="search"
 					maxW="300px"
 					onChange={(event) => {
-						setSearchproduct(event.target.value);
+						setSearchProduct(event.target.value);
 					}}
 				/>
 				<InputRightElement>
