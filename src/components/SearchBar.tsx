@@ -6,7 +6,6 @@ import {
 	InputGroup,
 	InputRightElement,
 	Text,
-	useBreakpointValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
@@ -21,7 +20,6 @@ interface ProductItems {
 function SearchBar() {
 	const [searchProduct, setSearchProduct] = useState("");
 	const [searchResult, setSearchResult] = useState<ProductItems[]>([]);
-	const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
 	useEffect(() => {
 		if (searchProduct.trim() === "") {
@@ -40,55 +38,25 @@ function SearchBar() {
 		setSearchResult([]);
 	};
 
-	const isDesktopView = useBreakpointValue({ base: false, md: true });
-
 	return (
-		<Flex position="relative">
+		<Flex position="relative" justifyContent="center">
 			<InputGroup>
-				{isDesktopView ? (
-					<>
-						<Input
-							placeholder="search"
-							width="100%"
-							onChange={(event) => {
-								setSearchProduct(event.target.value);
-							}}
-						/>
-
-						<InputRightElement>
-							<IconButton
-								icon={<FaSearch />}
-								colorScheme="white"
-								aria-label="search"
-								size="xs"
-								fontSize={20}
-								onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
-							/>
-						</InputRightElement>
-					</>
-				) : (
-					<>
-						<InputRightElement>
-							<IconButton
-								icon={<FaSearch />}
-								colorScheme="white"
-								aria-label="search"
-								size="xs"
-								fontSize={20}
-								onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
-							/>
-						</InputRightElement>
-						{isSearchBarOpen && (
-							<Input
-								placeholder="search"
-								width="100%"
-								onChange={(event) => {
-									setSearchProduct(event.target.value);
-								}}
-							/>
-						)}
-					</>
-				)}
+				<Input
+					placeholder="search"
+					w={{ base: "100%", sm: "300px", md: "400px" }}
+					onChange={(event) => {
+						setSearchProduct(event.target.value);
+					}}
+				/>
+				<InputRightElement>
+					<IconButton
+						icon={<FaSearch />}
+						colorScheme="white"
+						aria-label="search"
+						size="xs"
+						fontSize={20}
+					/>
+				</InputRightElement>
 			</InputGroup>
 
 			{searchProduct && (
