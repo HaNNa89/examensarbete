@@ -43,7 +43,7 @@ function SearchBar() {
 			<InputGroup>
 				<Input
 					placeholder="search"
-					maxW="300px"
+					width="100%"
 					onChange={(event) => {
 						setSearchProduct(event.target.value);
 					}}
@@ -69,6 +69,7 @@ function SearchBar() {
 					left={0}
 					bg="#1A1A1C"
 					p={2}
+					width="100%"
 				>
 					{searchResult.length === 0 ? (
 						<Text>No result found</Text>
