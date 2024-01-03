@@ -6,6 +6,7 @@ import {
 	InputGroup,
 	InputRightElement,
 	Text,
+	useBreakpointValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
@@ -20,6 +21,7 @@ interface ProductItems {
 function SearchBar() {
 	const [searchProduct, setSearchProduct] = useState("");
 	const [searchResult, setSearchResult] = useState<ProductItems[]>([]);
+	const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
 	useEffect(() => {
 		if (searchProduct.trim() === "") {
@@ -38,25 +40,55 @@ function SearchBar() {
 		setSearchResult([]);
 	};
 
+	const isDesktopView = useBreakpointValue({ base: false, md: true });
+
 	return (
 		<Flex position="relative">
 			<InputGroup>
-				<Input
-					placeholder="search"
-					width="100%"
-					onChange={(event) => {
-						setSearchProduct(event.target.value);
-					}}
-				/>
-				<InputRightElement>
-					<IconButton
-						icon={<FaSearch />}
-						colorScheme="white"
-						aria-label="search"
-						size="xs"
-						fontSize={20}
-					/>
-				</InputRightElement>
+				{isDesktopView ? (
+					<>
+						<Input
+							placeholder="search"
+							width="100%"
+							onChange={(event) => {
+								setSearchProduct(event.target.value);
+							}}
+						/>
+
+						<InputRightElement>
+							<IconButton
+								icon={<FaSearch />}
+								colorScheme="white"
+								aria-label="search"
+								size="xs"
+								fontSize={20}
+								onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
+							/>
+						</InputRightElement>
+					</>
+				) : (
+					<>
+						<InputRightElement>
+							<IconButton
+								icon={<FaSearch />}
+								colorScheme="white"
+								aria-label="search"
+								size="xs"
+								fontSize={20}
+								onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
+							/>
+						</InputRightElement>
+						{isSearchBarOpen && (
+							<Input
+								placeholder="search"
+								width="100%"
+								onChange={(event) => {
+									setSearchProduct(event.target.value);
+								}}
+							/>
+						)}
+					</>
+				)}
 			</InputGroup>
 
 			{searchProduct && (
