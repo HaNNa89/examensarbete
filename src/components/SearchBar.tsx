@@ -8,7 +8,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTimes } from "react-icons/fa";
 import { MOCK_PRODUCTS } from "../../data/mock";
 
 interface ProductItems {
@@ -33,6 +33,11 @@ function SearchBar() {
 		}
 	}, [searchProduct]);
 
+	const handleCloseSearchResult = () => {
+		setSearchproduct("");
+		setSearchResult([]);
+	};
+
 	return (
 		<Flex position="relative">
 			<InputGroup>
@@ -54,40 +59,55 @@ function SearchBar() {
 				</InputRightElement>
 			</InputGroup>
 
-			<Flex
-				direction="column"
-				justifyContent="flex-start"
-				position="absolute"
-				zIndex={1}
-				top="100%"
-				left={0}
-				bg="#1A1A1C"
-				p={2}
-			>
-				<Text>Result: </Text>
-				{searchResult.length === 0 ? (
-					<Text>No result found</Text>
-				) : (
-					<Flex direction="column">
-						{searchResult.map((result, index) => (
-							<Flex
-								align="center"
-								justifyContent="space-between"
-								p={2}
-								key={index}
-							>
-								<Text>{result.title}</Text>
-								<Image
-									src={result.img}
-									maxW="30%"
-									maxH="30%"
-									objectFit="cover"
-								/>
-							</Flex>
-						))}
-					</Flex>
-				)}
-			</Flex>
+			{searchProduct && (
+				<Flex
+					direction="column"
+					justifyContent="flex-start"
+					position="absolute"
+					zIndex={1}
+					top="100%"
+					left={0}
+					bg="#1A1A1C"
+					p={2}
+				>
+					{searchResult.length === 0 ? (
+						<Text>No result found</Text>
+					) : (
+						<Flex direction="column">
+							{searchProduct && (
+								<Flex justifyContent="space-between" py={4}>
+									<Text fontSize={18}>Result: </Text>
+									<IconButton
+										icon={<FaTimes />}
+										colorScheme="white"
+										aria-label="search"
+										size="xs"
+										fontSize={20}
+										onClick={handleCloseSearchResult}
+									/>
+								</Flex>
+							)}
+
+							{searchResult.map((result, index) => (
+								<Flex
+									align="center"
+									justifyContent="space-between"
+									p={2}
+									key={index}
+								>
+									<Text>{result.title}</Text>
+									<Image
+										src={result.img}
+										maxW="30%"
+										maxH="30%"
+										objectFit="cover"
+									/>
+								</Flex>
+							))}
+						</Flex>
+					)}
+				</Flex>
+			)}
 		</Flex>
 	);
 }
