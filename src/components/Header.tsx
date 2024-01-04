@@ -59,10 +59,6 @@ function Header() {
 								<Divider width="200px" mt={4} color="white" />
 								<Text>Cookie</Text>
 								<Divider width="200px" mt={4} color="white" />
-								<Text>Login</Text>
-								<Divider width="200px" mt={4} color="white" />
-								<Text>Favorites</Text>
-								<Divider width="200px" mt={4} color="white" />
 							</Flex>
 						</DrawerBody>
 					</DrawerContent>
