@@ -8,12 +8,12 @@ import {
 	Flex,
 	Heading,
 	IconButton,
-	Text,
 	useDisclosure,
 } from "@chakra-ui/react";
 import { HiMiniBars3, HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { PiUser } from "react-icons/pi";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 function Header() {
@@ -49,22 +49,32 @@ function Header() {
 								fontSize="20px"
 								gap={4}
 							>
-								<Text>Breakfast</Text>
+								<Link to="categories/breakfast" onClick={onClose}>
+									Breakfast
+								</Link>
 								<Divider width="200px" mt={4} color="white" />
-								<Text>Brunch</Text>
+								<Link to="categories/brunch" onClick={onClose}>
+									Brunch
+								</Link>
 								<Divider width="200px" mt={4} color="white" />
-								<Text>Lunch</Text>
+								<Link to="categories/lunch" onClick={onClose}>
+									Lunch
+								</Link>
 								<Divider width="200px" mt={4} color="white" />
-								<Text>Cake</Text>
+								<Link to="categories/cake" onClick={onClose}>
+									Cake
+								</Link>
 								<Divider width="200px" mt={4} color="white" />
-								<Text>Cookie</Text>
+								<Link to="categories/cookie" onClick={onClose}>
+									Cookie
+								</Link>
 								<Divider width="200px" mt={4} color="white" />
 							</Flex>
 						</DrawerBody>
 					</DrawerContent>
 				</Drawer>
 				<Heading fontSize={{ base: "24px", sm: "28px", md: "30px" }}>
-					Café o´neil
+					<Link to="/">Café o´neil</Link>
 				</Heading>
 				<Flex display={{ base: "none", md: "block" }} mt={4}>
 					<SearchBar />
@@ -74,8 +84,12 @@ function Header() {
 					gap={4}
 					fontSize={{ base: "24px", sm: "28px", md: "30px" }}
 				>
+					<Link to="admin"></Link>
 					<PiUser />
-					<IoMdHeartEmpty />
+					<Link to="favorites">
+						<IoMdHeartEmpty />
+					</Link>
+					<Link to="checkout"></Link>
 					<HiOutlineShoppingBag />
 				</Flex>
 			</Flex>
