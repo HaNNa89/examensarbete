@@ -20,7 +20,7 @@ function Header() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
-		<Flex direction="column" px={6} py={2} align="center">
+		<Flex direction="column" px={6} py={4} align="center">
 			<Flex
 				flexDirection="row"
 				justifyContent="space-between"
@@ -33,8 +33,7 @@ function Header() {
 					icon={<HiMiniBars3 />}
 					colorScheme="white"
 					aria-label="search"
-					size="xs"
-					fontSize={20}
+					fontSize={22}
 					onClick={onOpen}
 					display={{ base: "block", md: "none" }}
 				/>
@@ -68,7 +67,7 @@ function Header() {
 						</DrawerBody>
 					</DrawerContent>
 				</Drawer>
-				<Heading fontSize={{ base: "20px", sm: "26px", md: "30px" }}>
+				<Heading fontSize={{ base: "24px", sm: "28px", md: "30px" }}>
 					Café o´neil
 				</Heading>
 				<Flex display={{ base: "none", md: "block" }} mt={4}>
@@ -77,7 +76,7 @@ function Header() {
 				<Flex
 					justifyContent="space-between"
 					gap={4}
-					fontSize={{ base: "20px", sm: "26px", md: "30px" }}
+					fontSize={{ base: "24px", sm: "28px", md: "30px" }}
 				>
 					<PiUser />
 					<IoMdHeartEmpty />
