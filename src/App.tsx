@@ -1,15 +1,18 @@
 import { Outlet } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import { CartProvider } from './hooks/useCartContext';
 import { FavoritesContextProvider } from './hooks/useFavoritesContext';
 function App() {
   return (
     <>
-      <FavoritesContextProvider>
-        <Header />
-        <Outlet />
-        <Footer />
-      </FavoritesContextProvider>
+      <CartProvider>
+        <FavoritesContextProvider>
+          <Header />
+          <Outlet />
+          <Footer />
+        </FavoritesContextProvider>
+      </CartProvider>
     </>
   );
 }

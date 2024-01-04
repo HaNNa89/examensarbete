@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
+import { useCart } from '../hooks/useCartContext';
 import {
   useFavoritesContext,
   useToggleFavorite,
@@ -19,11 +20,17 @@ interface Product {
   img: string;
   title: string;
   price: number;
+  id: number;
+}
+
+interface CartContext {
+  addToCart: (product: Product) => void;
 }
 
 function ProductCard({ product }: { product: Product }) {
   const [showOverlay, setShowOverlay] = useState(false);
   const { img, title, price } = product;
+  const isLargeScreen = useBreakpointValue({ base: false, lg: true });
 
   const { favoriteProducts } = useFavoritesContext();
   const toggleProductFavorite = useToggleFavorite();
@@ -40,7 +47,12 @@ function ProductCard({ product }: { product: Product }) {
     toggleProductFavorite({ title, img, price, isLiked });
   };
 
-  const isLargeScreen = useBreakpointValue({ base: false, lg: true });
+  const cart = useCart() as CartContext;
+  const { addToCart } = cart;
+
+  const handleOrderClick = () => {
+    addToCart(product);
+  };
 
   return (
     <Flex>
@@ -109,6 +121,7 @@ function ProductCard({ product }: { product: Product }) {
                   borderWidth: '2px',
                   boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
                 }}
+                onClick={handleOrderClick}
               >
                 Order
               </Button>
@@ -156,6 +169,7 @@ function ProductCard({ product }: { product: Product }) {
                 borderWidth: '2px',
                 boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
               }}
+              onClick={handleOrderClick}
             >
               Order
             </Button>
