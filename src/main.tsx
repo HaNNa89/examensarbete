@@ -16,7 +16,6 @@ import Detail from "./pages/Detail.tsx";
 import Favorites from "./pages/Favorites.tsx";
 import Home from "./pages/Home.tsx";
 import OrderConfirmation from "./pages/OrderConfirmation.tsx";
-import SearchResult from "./pages/SearchResult.tsx";
 const theme = extendTheme({
 	styles: {
 		global: {
@@ -42,7 +41,7 @@ const router = createBrowserRouter(
 			<Route path="/id/:productName" element={<Detail />} />
 			<Route path="admin" element={<Admin />} />
 			<Route path="orderconfirmation" element={<OrderConfirmation />} />
-			<Route path="search-results/:term" element={<SearchResult />} />
+			<Route path="categories/:category" element={<Home />} />
 		</Route>
 	)
 );

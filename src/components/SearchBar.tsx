@@ -39,11 +39,11 @@ function SearchBar() {
 	};
 
 	return (
-		<Flex position="relative">
+		<Flex position="relative" justifyContent="center">
 			<InputGroup>
 				<Input
 					placeholder="search"
-					width="100%"
+					w={{ base: "100%", sm: "300px", md: "400px" }}
 					onChange={(event) => {
 						setSearchProduct(event.target.value);
 					}}
