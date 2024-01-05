@@ -57,7 +57,7 @@ function ShoppingCart() {
 								<HStack spacing={20}>
 									<Flex direction="column" justifyContent="space-between">
 										<Box>
-											<Text fontSize="16">Three Chocolate Mousse Cake</Text>
+											<Text fontSize="16">{product.title}</Text>
 											<Text fontSize="16">{product.subheading}</Text>
 											<Text fontSize="16">{product.price} SEK</Text>
 										</Box>
