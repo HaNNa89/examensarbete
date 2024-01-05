@@ -1,10 +1,21 @@
-export const MOCK_PRODUCTS = [
+interface Product {
+  title: string;
+  subheading: string;
+  categorie: string;
+  price: number;
+  id: number;
+  description: string;
+  ingredients: string[];
+  img: string;
+}
+
+export const MOCK_PRODUCTS: Product[] = [
   {
     title: 'Pancakes',
     subheading: '6st',
     categorie: 'Brunch',
     price: 67,
-    Id: 1,
+    id: 1,
     description:
       'Delight in fluffy homemade pancakes perfect for a delightful brunch. These golden, airy cakes are made from a blend of flour, butter, eggs, and milk, creating a delectable base. Savor these comforting treats hot off the griddle, bringing joy to every bite!',
     ingredients: [
@@ -24,7 +35,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Brunch',
     price: 82,
-    Id: 2,
+    id: 2,
     description:
       'Indulge in the refreshing crunch of our walnut salad, a delightful addition to any brunch. A vibrant mix of fresh, crisp greens paired with the robust earthiness of walnuts, creating a harmonious blend of textures and flavors. Tossed with a tangy vinaigrette, this salad bursts with wholesome goodness. A perfect balance of nutritious greens and the richness of walnuts, providing a satisfying and wholesome experience with every bite.',
     ingredients: [
@@ -42,7 +53,7 @@ export const MOCK_PRODUCTS = [
     subheading: '1 slice',
     categorie: 'Cake',
     price: 42,
-    Id: 3,
+    id: 3,
     description:
       'Indulge in the divine richness of our white chocolate cake, a slice of heavenly sweetness. Moist layers of fluffy cake infused with the creamy essence of white chocolate. Each bite melts in your mouth, delivering a symphony of delicate flavors and a delightful sweetness that lingers. Perfect for any occasion, this cake is a true celebration of elegance and taste.',
     ingredients: [
@@ -63,7 +74,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Brunch',
     price: 52,
-    Id: 4,
+    id: 4,
     description:
       'Savor the simplicity and freshness of our egg and avocado sandwich. Creamy slices of ripe avocado paired with perfectly cooked eggs nestled between soft, toasted bread. This satisfying combination is finished with a touch of seasoning for a burst of flavor. A quick yet wholesome meal option that never fails to delight.',
     ingredients: ['Eggs', 'Avocado', 'Bread', 'Salt', 'Pepper'],
@@ -74,7 +85,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Brunch',
     price: 78,
-    Id: 5,
+    id: 5,
     description:
       'Embrace the crispness and wholesomeness of our cabbage and spinach salad. A refreshing mix of crunchy cabbage and tender spinach leaves, tossed together to create a medley of textures. Enhanced with a zesty vinaigrette that brings out the natural flavors of the greens. This vibrant salad is both nutritious and delicious, a perfect addition to any meal.',
     ingredients: [
@@ -92,7 +103,7 @@ export const MOCK_PRODUCTS = [
     subheading: '3pcs',
     categorie: 'Brunch',
     price: 67,
-    Id: 6,
+    id: 6,
     description:
       'Indulge in the classic delight of our French toast, a comforting treat for any brunch. Thick slices of bread soaked in a rich custard of eggs and milk, then gently toasted to golden perfection. Served warm and dusted with a sprinkle of powdered sugar for that extra touch of sweetness. Enjoy the irresistible aroma and softness of each bite!',
     ingredients: [
@@ -112,7 +123,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Brunch',
     price: 52,
-    Id: 7,
+    id: 7,
     description:
       'Experience the delightful fusion of flavors in our pomegranate sandwich. Juicy pomegranate seeds paired with a savory spread, sandwiched between slices of freshly baked bread. A unique combination that offers a burst of sweetness and tanginess in every bite. A delightful option for those seeking a fresh and vibrant sandwich!',
     ingredients: ['Pomegranate seeds', 'Bread', 'Cheese', 'Avocado'],
@@ -123,7 +134,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Cookie',
     price: 35,
-    Id: 8,
+    id: 8,
     description:
       "Delight in the decadence of our red velvet cupcake, a charmingly crimson treat that captivates with its velvety texture and rich flavor. Each bite of this moist cake is a delightful symphony of cocoa and subtle sweetness. Topped with a luxurious swirl of cream cheese frosting, it's a perfect little indulgence for any occasion!",
     ingredients: [
@@ -148,7 +159,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Cookie',
     price: 35,
-    Id: 9,
+    id: 9,
     description:
       'Treat yourself to the lusciousness of our chocolate and cherry cupcake, a delightful blend of rich chocolate and the fruity sweetness of cherries. Each bite boasts a moist chocolatey base filled with a hint of cherry goodness. Topped with a swirl of velvety chocolate frosting, this cupcake is a harmonious symphony of flavors!',
     ingredients: [
@@ -171,7 +182,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Cake',
     price: 242,
-    Id: 10,
+    id: 10,
     description:
       "Indulge in the ultimate decadence of our chocolate cake, a timeless classic that satisfies every chocolate lover's craving. Layers of moist, intensely chocolatey cake paired with a luxurious chocolate frosting that melts in your mouth. Every slice is a celebration of pure cocoa bliss, a true temptation for the senses!",
     ingredients: [
@@ -192,7 +203,7 @@ export const MOCK_PRODUCTS = [
     subheading: '',
     categorie: 'Cake',
     price: 282,
-    Id: 11,
+    id: 11,
     description:
       'Experience the divine layers of our three chocolate mousse cake, a luxurious journey through rich and velvety chocolate. Indulge in the decadence of three distinct chocolate mousses, each layer offering a unique intensity and smoothness. Topped with a glossy ganache, this cake is an opulent delight for chocolate connoisseurs.',
     ingredients: [
@@ -210,7 +221,7 @@ export const MOCK_PRODUCTS = [
     subheading: '6pcs',
     categorie: 'Cookie',
     price: 68,
-    Id: 12,
+    id: 12,
     description:
       'Savor the homemade goodness of our chocolate chip cookies, a timeless classic that never fails to delight. Crispy on the edges and chewy in the center, these cookies are loaded with rich chocolate chips that melt in your mouth with every bite. Perfectly balanced sweetness and a hint of salt make these cookies irresistible!',
     ingredients: [
