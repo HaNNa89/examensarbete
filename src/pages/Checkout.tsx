@@ -27,6 +27,7 @@ function Checkout() {
           Order
         </Button>
       </Flex>
+      {/* fyll på med ett form där man kan skriva in namn och adress */}
     </Center>
   );
 }
