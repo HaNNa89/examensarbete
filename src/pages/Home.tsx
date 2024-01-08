@@ -36,8 +36,7 @@ function Home() {
           <Heading
             mt={4}
             fontSize={{
-              base: '20px',
-              sm: '30px',
+              base: '30px',
               md: '40px',
               lg: '50px',
             }}
@@ -60,8 +59,8 @@ function Home() {
         <Box
           maxW={{
             base: '100%',
-            sm: '400px',
-            lg: '500px',
+            sm: '500px',
+            lg: '620px',
           }}
           order={{ base: 1, lg: 2 }}
         >
