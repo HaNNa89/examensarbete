@@ -15,14 +15,20 @@ import {
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { MOCK_PRODUCTS } from "../../data/mock";
+import { useCart } from "../hooks/useCartContext";
 
 function Detail() {
 	const product = MOCK_PRODUCTS[0];
+	const { addToCart } = useCart();
 
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handletoggleMenuBox = () => {
 		setIsOpen(!isOpen);
+	};
+
+	const handleAddToCartClick = () => {
+		addToCart(product);
 	};
 
 	return (
@@ -71,6 +77,7 @@ function Detail() {
 									borderWidth: "2px",
 									boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
 								}}
+								onClick={handleAddToCartClick}
 							>
 								Order
 							</Box>
