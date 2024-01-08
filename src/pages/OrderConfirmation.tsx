@@ -38,7 +38,7 @@ function OrderConfirmation() {
                   Pieces
                 </Th>
                 <Th color="white" fontSize={['sm', 'md', 'lg']}>
-                  Address
+                  Date
                 </Th>
                 <Th color="white" fontSize={['sm', 'md', 'lg']}>
                   Recipient
@@ -62,7 +62,7 @@ function OrderConfirmation() {
                   />
                 </Td>
                 <Td fontSize={['sm', 'md', 'lg']}>3</Td>
-                <Td fontSize={['sm', 'md', 'lg']}>Address</Td>
+                <Td fontSize={['sm', 'md', 'lg']}>14-02-24</Td>
                 <Td fontSize={['sm', 'md', 'lg']}>Recipient</Td>
                 <Td fontSize={['sm', 'md', 'lg']}>Price</Td>
               </Tr>
