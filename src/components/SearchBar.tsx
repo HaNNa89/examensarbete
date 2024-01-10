@@ -8,7 +8,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { FaSearch, FaTimes } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { MOCK_PRODUCTS } from "../../data/mock";
 
@@ -37,6 +37,7 @@ function SearchBar() {
 
 	const handleNavigateToDetail = (title: string) => {
 		navigate(`/id/${title}`);
+		handleCloseSearchResult();
 	};
 
 	const handleCloseSearchResult = () => {
@@ -84,14 +85,6 @@ function SearchBar() {
 							{searchProduct && (
 								<Flex justifyContent="space-between" py={4}>
 									<Text fontSize={18}>Result: </Text>
-									<IconButton
-										icon={<FaTimes />}
-										colorScheme="white"
-										aria-label="search"
-										size="xs"
-										fontSize={20}
-										onClick={handleCloseSearchResult}
-									/>
 								</Flex>
 							)}
 
