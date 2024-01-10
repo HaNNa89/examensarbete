@@ -14,11 +14,29 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import { MOCK_PRODUCTS } from "../../data/mock";
 import { useCart } from "../hooks/useCartContext";
 
+interface DetailProduct {
+	img: string;
+	title: string;
+	subheading: string;
+	categorie: string;
+	price: number;
+	id: number;
+	description: string;
+	ingredients: string[];
+}
 function Detail() {
-	const product = MOCK_PRODUCTS[0];
+	const { productName } = useParams();
+	const product: DetailProduct | undefined = MOCK_PRODUCTS.find(
+		(p) => p.title === productName
+	);
+
+	if (!product) {
+		return <p>not found</p>;
+	}
 	const { addToCart } = useCart();
 
 	const [isOpen, setIsOpen] = useState(false);
