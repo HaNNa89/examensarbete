@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MOCK_PRODUCTS } from "../../data/mock";
 
 interface ProductItems {
@@ -19,6 +19,7 @@ interface ProductItems {
 }
 
 function SearchBar() {
+	const navigate = useNavigate();
 	const [searchProduct, setSearchProduct] = useState("");
 	const [searchResult, setSearchResult] = useState<ProductItems[]>([]);
 
@@ -33,6 +34,10 @@ function SearchBar() {
 			setSearchResult(filteredProductItems);
 		}
 	}, [searchProduct]);
+
+	const handleNavigateToDetail = (title: string) => {
+		navigate(`/id/${title}`);
+	};
 
 	const handleCloseSearchResult = () => {
 		setSearchProduct("");
@@ -96,16 +101,16 @@ function SearchBar() {
 									justifyContent="space-between"
 									p={2}
 									key={index}
+									cursor="pointer"
+									onClick={() => handleNavigateToDetail(result.title)}
 								>
-									<Link to={`/id/${result.title}`}>
-										<Text>{result.title}</Text>
-										<Image
-											src={result.img}
-											maxW="30%"
-											maxH="30%"
-											objectFit="cover"
-										/>
-									</Link>
+									<Text>{result.title}</Text>
+									<Image
+										src={result.img}
+										maxW="30%"
+										maxH="30%"
+										objectFit="cover"
+									/>
 								</Flex>
 							))}
 						</Flex>
