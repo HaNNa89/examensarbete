@@ -2,6 +2,7 @@ import {
 	Box,
 	Card,
 	CardBody,
+	Center,
 	Flex,
 	HStack,
 	Heading,
@@ -14,11 +15,33 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import { MOCK_PRODUCTS } from "../../data/mock";
 import { useCart } from "../hooks/useCartContext";
 
+interface DetailProduct {
+	img: string;
+	title: string;
+	subheading: string;
+	categorie: string;
+	price: number;
+	id: number;
+	description: string;
+	ingredients: string[];
+}
 function Detail() {
-	const product = MOCK_PRODUCTS[0];
+	const { productName } = useParams();
+	const product: DetailProduct | undefined = MOCK_PRODUCTS.find(
+		(p) => p.title === productName
+	);
+
+	if (!product) {
+		return (
+			<Center>
+				<Text>Product not found!</Text>;
+			</Center>
+		);
+	}
 	const { addToCart } = useCart();
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +55,21 @@ function Detail() {
 	};
 
 	return (
-		<Flex direction="column" justifyContent="center" alignItems="center">
+		<Flex
+			direction={{ base: "column", md: "row" }}
+			justifyContent="center"
+			alignItems="center"
+			py={50}
+		>
+			<Box alignContent="center" justifyContent="center" w="300px" h="500px">
+				<Image
+					src={product.img}
+					alt={product.title}
+					width="100%"
+					height="100%"
+					objectFit="cover"
+				/>
+			</Box>
 			<Card
 				direction={{ base: "column", sm: "row" }}
 				overflow="hidden"
@@ -42,22 +79,11 @@ function Detail() {
 				color="white"
 				borderRadius="none"
 			>
-				<Box
-					display="flex"
-					alignContent="center"
-					justifyContent="center"
-					w="300px"
-					h="400px"
-				>
-					<Image
-						src={product.img}
-						alt={product.title}
-						maxW="100%"
-						objectFit="cover"
-					/>
-				</Box>
 				<Flex alignItems="center" justifyContent="center">
-					<Stack w={{ base: "100%", md: "400px" }}>
+					<Stack
+						w={{ base: "100%", sm: "400px" }}
+						ml={{ base: "0", sm: "22", md: "0" }}
+					>
 						<CardBody>
 							<Heading>{product.title}</Heading>
 							<Text>{product.subheading}</Text>
