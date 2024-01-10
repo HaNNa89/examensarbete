@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { MOCK_PRODUCTS } from "../../data/mock";
 
 interface ProductItems {
@@ -96,13 +97,15 @@ function SearchBar() {
 									p={2}
 									key={index}
 								>
-									<Text>{result.title}</Text>
-									<Image
-										src={result.img}
-										maxW="30%"
-										maxH="30%"
-										objectFit="cover"
-									/>
+									<Link to={`/id/${result.title}`}>
+										<Text>{result.title}</Text>
+										<Image
+											src={result.img}
+											maxW="30%"
+											maxH="30%"
+											objectFit="cover"
+										/>
+									</Link>
 								</Flex>
 							))}
 						</Flex>
