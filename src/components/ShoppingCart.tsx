@@ -18,10 +18,10 @@ import {
 } from "@chakra-ui/react";
 import { AiFillDelete } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCartContext";
 
 function ShoppingCart() {
-	//const product = MOCK_PRODUCTS[0];
 	const {
 		isOpen,
 		closeCart,
@@ -123,7 +123,28 @@ function ShoppingCart() {
 									</Flex>
 								))
 							) : (
-								<Text textAlign="center">Empyt cart!</Text>
+								<Flex direction="column">
+									<Text>Oops your shopping cart is empty...</Text>
+									<Link to="/">
+										<Box
+											as="button"
+											width="250px"
+											height="40px"
+											mt={10}
+											bg="none"
+											color="white"
+											border="1px"
+											_hover={{
+												bg: "whiteAlpha.200",
+												borderWidth: "2px",
+												boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+											}}
+											onClick={closeCart}
+										>
+											Start shopping!
+										</Box>
+									</Link>
+								</Flex>
 							)}
 						</Flex>
 						{cartItems.length > 0 && (
