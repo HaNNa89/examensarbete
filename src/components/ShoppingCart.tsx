@@ -15,15 +15,15 @@ import {
 	IconButton,
 	Image,
 	Text,
-	useDisclosure,
 } from "@chakra-ui/react";
 import { AiFillDelete } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { MOCK_PRODUCTS } from "../../data/mock";
+import { useCart } from "../hooks/useCartContext";
 
 function ShoppingCart() {
 	const product = MOCK_PRODUCTS[0];
-	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { isOpen, closeCart } = useCart();
 
 	return (
 		<Flex>
@@ -31,11 +31,10 @@ function ShoppingCart() {
 				icon={<HiOutlineShoppingBag />}
 				colorScheme="white"
 				aria-label="cart"
-				onClick={onOpen}
 				display={{ base: "block", md: "none" }}
 			/>
 
-			<Drawer isOpen={isOpen} size="xs" placement="right" onClose={onClose}>
+			<Drawer isOpen={isOpen} size="xs" placement="right" onClose={closeCart}>
 				<DrawerOverlay />
 				<DrawerContent bg="#1A1A1C">
 					<DrawerCloseButton />
