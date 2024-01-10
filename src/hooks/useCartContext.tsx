@@ -4,10 +4,17 @@ import ShoppingCart from "../components/ShoppingCart";
 interface Product {
 	id: number;
 	price: number;
+	img: string;
+	title: string;
+	subheading: string;
 }
 
 interface CartItem extends Product {
 	quantity: number;
+	img: string;
+	title: string;
+	subheading: string;
+	price: number;
 }
 
 interface CartContext {
@@ -53,7 +60,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 			setCartItems(updatedCart);
 			openCart();
 		} else {
-			setCartItems([...cartItems, { ...product, quantity: 1 }]);
+			setCartItems([
+				...cartItems,
+				{
+					...product,
+					quantity: 1,
+					title: product.title,
+					subheading: product.subheading,
+					img: product.img,
+				},
+			]);
 		}
 	};
 
