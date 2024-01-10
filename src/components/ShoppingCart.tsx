@@ -18,12 +18,19 @@ import {
 } from "@chakra-ui/react";
 import { AiFillDelete } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { MOCK_PRODUCTS } from "../../data/mock";
 import { useCart } from "../hooks/useCartContext";
 
 function ShoppingCart() {
-	const product = MOCK_PRODUCTS[0];
-	const { isOpen, closeCart } = useCart();
+	//const product = MOCK_PRODUCTS[0];
+	const {
+		isOpen,
+		closeCart,
+		cartItems,
+		decreaseQuantity,
+		increaseQuantity,
+		calculateTotal,
+		removeFromCart,
+	} = useCart();
 
 	return (
 		<Flex>
@@ -43,77 +50,97 @@ function ShoppingCart() {
 					</DrawerHeader>
 					<DrawerBody>
 						<Flex direction="column" justifyContent="space-between">
-							<Flex gap={2}>
-								<Box w="150px">
-									<Image
-										src={product.img}
-										alt={product.title}
-										maxH="100%"
-										maxW="100%"
-										objectFit="cover"
-									/>
-								</Box>
-								<HStack spacing={20}>
-									<Flex direction="column" justifyContent="space-between">
-										<Box>
-											<Text fontSize="16">{product.title}</Text>
-											<Text fontSize="16">{product.subheading}</Text>
-											<Text fontSize="16">{product.price} SEK</Text>
+							{cartItems.length > 0 ? (
+								cartItems.map((product) => (
+									<Flex key={product.id} gap={2}>
+										<Box w="150px">
+											<Image
+												src={product.img}
+												alt={product.title}
+												maxH="100%"
+												maxW="100%"
+												objectFit="cover"
+											/>
 										</Box>
+										<HStack spacing={20}>
+											<Flex direction="column" justifyContent="space-between">
+												<Box>
+													<Text fontSize="16">{product.title}</Text>
+													<Text fontSize="16">{product.subheading}</Text>
+													<Text fontSize="16">{product.price} SEK</Text>
+												</Box>
 
-										<Flex
-											justifyContent="center"
-											align="center"
-											border="1px"
-											gap={4}
-											mt={4}
-										>
-											<Box
-												as="button"
-												fontSize="14px"
-												fontWeight={600}
-												_hover={{
-													bg: "whiteAlpha.200",
+												<Flex
+													justifyContent="center"
+													align="center"
+													border="1px"
+													gap={4}
+													mt={4}
+												>
+													<Box
+														as="button"
+														fontSize="14px"
+														fontWeight={600}
+														_hover={{
+															bg: "whiteAlpha.200",
 
-													boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-												}}
-											>
-												-
-											</Box>
-											<Text fontSize={14}>8</Text>
-											<Box
-												as="button"
-												fontSize="14px"
-												fontWeight={600}
-												_hover={{
-													bg: "whiteAlpha.200",
+															boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+														}}
+														onClick={() => decreaseQuantity(product.id)}
+														cursor="pointer"
+													>
+														-
+													</Box>
+													<Text fontSize={14}>{product.quantity}</Text>
+													<Box
+														as="button"
+														fontSize="14px"
+														fontWeight={600}
+														_hover={{
+															bg: "whiteAlpha.200",
 
-													boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-												}}
-											>
-												+
-											</Box>
-										</Flex>
+															boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+														}}
+														onClick={() => increaseQuantity(product.id)}
+														cursor="pointer"
+													>
+														+
+													</Box>
+												</Flex>
+											</Flex>
+											<Flex direction="column" mb={20}>
+												<IconButton
+													icon={<AiFillDelete />}
+													colorScheme="white"
+													aria-label="delete"
+													size="xs"
+													fontSize={20}
+													onClick={() => removeFromCart(product.id)}
+													cursor="pointer"
+												/>
+											</Flex>
+										</HStack>
 									</Flex>
-									<Flex direction="column" mb={20}>
-										<IconButton
-											icon={<AiFillDelete />}
-											colorScheme="white"
-											aria-label="search"
-											size="xs"
-											fontSize={20}
-										/>
-									</Flex>
-								</HStack>
-							</Flex>
-
-							<Divider mt={4} />
-
-							<Flex justifyContent="space-between" align="center" py={4} px={2}>
-								<Text>Total:</Text>
-								<Text>800 SEK</Text>
-							</Flex>
+								))
+							) : (
+								<Text textAlign="center">Empyt cart!</Text>
+							)}
 						</Flex>
+						{cartItems.length > 0 && (
+							<>
+								<Divider mt={4} />
+
+								<Flex
+									justifyContent="space-between"
+									align="center"
+									py={4}
+									px={2}
+								>
+									<Text>Total:</Text>
+									<Text>{calculateTotal()} SEK</Text>
+								</Flex>
+							</>
+						)}
 					</DrawerBody>
 					<DrawerFooter>
 						<Button>Order</Button>
