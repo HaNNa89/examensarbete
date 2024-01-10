@@ -65,23 +65,23 @@ function Header() {
                     fontSize="20px"
                     gap={4}
                   >
-                    <Link to="#products" onClick={onClose}>
+                    <Link to="/#products" onClick={onClose}>
                       Breakfast
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="#products" onClick={onClose}>
+                    <Link to="/#products" onClick={onClose}>
                       Brunch
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="#products" onClick={onClose}>
+                    <Link to="/#products" onClick={onClose}>
                       Lunch
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="#products" onClick={onClose}>
+                    <Link to="/#products" onClick={onClose}>
                       Cake
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="#products" onClick={onClose}>
+                    <Link to="/#products" onClick={onClose}>
                       Cookie
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
