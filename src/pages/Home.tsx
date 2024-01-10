@@ -74,8 +74,7 @@ function Home() {
         </Box>
       </Flex>
       <ProductCategories onSelectCategory={setCurrentCategory} />
-
-      <Box mx="auto" maxW="1200px" px="1rem">
+      <Box mx="auto" maxW="1200px" px="1rem" id="products">
         <Center>
           <Box w="100%" mt="2rem">
             <Center>
@@ -96,7 +95,6 @@ function Home() {
           </Box>
         </Center>
       </Box>
-
       <Flex direction="column" align="center" py={20} px={24}>
         <Text fontSize={{ base: '20px', md: '25px' }} mb={4}>
           Welcome to Café O'Neil

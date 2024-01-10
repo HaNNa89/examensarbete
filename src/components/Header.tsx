@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Divider,
   Drawer,
   DrawerBody,
@@ -64,23 +65,23 @@ function Header() {
                     fontSize="20px"
                     gap={4}
                   >
-                    <Link to="categories/breakfast" onClick={onClose}>
+                    <Link to="#products" onClick={onClose}>
                       Breakfast
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="categories/brunch" onClick={onClose}>
+                    <Link to="#products" onClick={onClose}>
                       Brunch
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="categories/lunch" onClick={onClose}>
+                    <Link to="#products" onClick={onClose}>
                       Lunch
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="categories/cake" onClick={onClose}>
+                    <Link to="#products" onClick={onClose}>
                       Cake
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
-                    <Link to="categories/cookie" onClick={onClose}>
+                    <Link to="#products" onClick={onClose}>
                       Cookie
                     </Link>
                     <Divider width="200px" mt={4} color="white" />
@@ -88,12 +89,14 @@ function Header() {
                 </DrawerBody>
               </DrawerContent>
             </Drawer>
-            <Heading
-              fontSize={{ base: '24px', sm: '28px', md: '30px' }}
-              textAlign={{ base: 'center', md: 'left' }}
-            >
-              <Link to="/">Café o´neil</Link>
-            </Heading>
+            <Center>
+              <Heading
+                fontSize={{ base: '24px', sm: '28px', md: '30px' }}
+                textAlign={{ base: 'center', md: 'left' }}
+              >
+                <Link to="/">Café o´neil</Link>
+              </Heading>
+            </Center>
           </Flex>
         ) : (
           <Box>
