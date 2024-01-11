@@ -11,10 +11,6 @@ interface Product {
 
 interface CartItem extends Product {
 	quantity: number;
-	img: string;
-	title: string;
-	subheading: string;
-	price: number;
 }
 
 interface CartContext {
