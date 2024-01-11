@@ -61,7 +61,7 @@ function ShoppingCart() {
 											/>
 										</Box>
 
-										<Flex direction="column" bg="pink" width={250}>
+										<Flex direction="column" width={250}>
 											<Box>
 												<Text fontSize="14">{product.title}</Text>
 												<Text fontSize="14">{product.subheading}</Text>
@@ -172,9 +172,9 @@ function ShoppingCart() {
 									fontWeight={600}
 									_hover={{
 										bg: "whiteAlpha.200",
-
 										boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
 									}}
+									onClick={closeCart}
 								>
 									Go back
 								</Box>
