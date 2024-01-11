@@ -1,6 +1,5 @@
 import {
 	Box,
-	Button,
 	Center,
 	Divider,
 	Drawer,
@@ -11,7 +10,6 @@ import {
 	DrawerHeader,
 	DrawerOverlay,
 	Flex,
-	HStack,
 	IconButton,
 	Image,
 	Text,
@@ -49,81 +47,79 @@ function ShoppingCart() {
 						<Center>Shopping Cart</Center>
 					</DrawerHeader>
 					<DrawerBody>
-						<Flex direction="column" justifyContent="space-between">
+						<Flex direction="column">
 							{cartItems.length > 0 ? (
 								cartItems.map((product) => (
-									<Flex key={product.id} gap={2}>
-										<Box w="150px">
+									<Flex key={product.id} mb={4} gap={2}>
+										<Box width="90px" height="100px">
 											<Image
 												src={product.img}
 												alt={product.title}
-												maxH="100%"
-												maxW="100%"
+												height="100%"
+												width="100%"
 												objectFit="cover"
 											/>
 										</Box>
-										<HStack spacing={20}>
-											<Flex direction="column" justifyContent="space-between">
-												<Box>
-													<Text fontSize="16">{product.title}</Text>
-													<Text fontSize="16">{product.subheading}</Text>
-													<Text fontSize="16">{product.price} SEK</Text>
-												</Box>
 
-												<Flex
-													justifyContent="center"
-													align="center"
-													border="1px"
-													gap={4}
-													mt={4}
-												>
-													<Box
-														as="button"
-														fontSize="14px"
-														fontWeight={600}
-														_hover={{
-															bg: "whiteAlpha.200",
+										<Flex direction="column" bg="pink" width={250}>
+											<Box>
+												<Text fontSize="14">{product.title}</Text>
+												<Text fontSize="14">{product.subheading}</Text>
+												<Text fontSize="14">{product.price} SEK</Text>
+											</Box>
 
-															boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-														}}
-														onClick={() => decreaseQuantity(product.id)}
-														cursor="pointer"
-													>
-														-
-													</Box>
-													<Text fontSize={14}>{product.quantity}</Text>
-													<Box
-														as="button"
-														fontSize="14px"
-														fontWeight={600}
-														_hover={{
-															bg: "whiteAlpha.200",
-
-															boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-														}}
-														onClick={() => increaseQuantity(product.id)}
-														cursor="pointer"
-													>
-														+
-													</Box>
-												</Flex>
-											</Flex>
-											<Flex direction="column" mb={20}>
-												<IconButton
-													icon={<AiFillDelete />}
-													colorScheme="white"
-													aria-label="delete"
-													size="xs"
-													fontSize={20}
-													onClick={() => removeFromCart(product.id)}
+											<Flex
+												justifyContent="center"
+												align="center"
+												border="1px"
+												gap={2}
+												mt={2}
+												width="50px"
+											>
+												<Box
+													as="button"
+													fontSize="14px"
+													fontWeight={600}
+													_hover={{
+														bg: "whiteAlpha.200",
+														boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+													}}
+													onClick={() => decreaseQuantity(product.id)}
 													cursor="pointer"
-												/>
+												>
+													-
+												</Box>
+												<Text fontSize={14}>{product.quantity}</Text>
+												<Box
+													as="button"
+													fontSize="14px"
+													fontWeight={600}
+													_hover={{
+														bg: "whiteAlpha.200",
+														boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+													}}
+													onClick={() => increaseQuantity(product.id)}
+													cursor="pointer"
+												>
+													+
+												</Box>
 											</Flex>
-										</HStack>
+										</Flex>
+										<Flex direction="column" mb={20}>
+											<IconButton
+												icon={<AiFillDelete />}
+												colorScheme="white"
+												aria-label="delete"
+												size="xs"
+												fontSize={20}
+												onClick={() => removeFromCart(product.id)}
+												cursor="pointer"
+											/>
+										</Flex>
 									</Flex>
 								))
 							) : (
-								<Flex direction="column">
+								<Flex direction="column" align="center">
 									<Text>Oops your shopping cart is empty...</Text>
 									<Link to="/">
 										<Box
@@ -141,7 +137,7 @@ function ShoppingCart() {
 											}}
 											onClick={closeCart}
 										>
-											Start shopping!
+											Start Your Order!
 										</Box>
 									</Link>
 								</Flex>
@@ -149,12 +145,12 @@ function ShoppingCart() {
 						</Flex>
 						{cartItems.length > 0 && (
 							<>
-								<Divider mt={4} />
+								<Divider mt={3} />
 
 								<Flex
 									justifyContent="space-between"
 									align="center"
-									py={4}
+									py={2}
 									px={2}
 								>
 									<Text>Total:</Text>
@@ -164,7 +160,42 @@ function ShoppingCart() {
 						)}
 					</DrawerBody>
 					<DrawerFooter>
-						<Button>Order</Button>
+						<Flex gap={6}>
+							<Link to="/">
+								<Box
+									as="button"
+									width="120px"
+									height="40px"
+									color="white"
+									border="1px"
+									fontSize="14px"
+									fontWeight={600}
+									_hover={{
+										bg: "whiteAlpha.200",
+
+										boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+									}}
+								>
+									Go back
+								</Box>
+							</Link>
+							<Box
+								as="button"
+								width="120px"
+								height="40px"
+								color="white"
+								border="1px"
+								fontSize="14px"
+								fontWeight={600}
+								_hover={{
+									bg: "whiteAlpha.200",
+
+									boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+								}}
+							>
+								Order
+							</Box>
+						</Flex>
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
