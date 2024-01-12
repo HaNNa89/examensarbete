@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import ShoppingCart from "../components/ShoppingCart";
+import { useLocalStorage } from "./useLocalStorage";
 
 interface Product {
 	id: number;
@@ -43,7 +44,10 @@ export function useCart(): CartContext {
 }
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-	const [cartItems, setCartItems] = useState<CartItem[]>([]);
+	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+		"cartItems",
+		[]
+	);
 	const [isOpen, setIsOpen] = useState(false);
 
 	const addToCart = (product: Product) => {
