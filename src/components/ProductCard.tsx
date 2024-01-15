@@ -135,13 +135,15 @@ function ProductCard({ product }: { product: Product }) {
       ) : (
         <Flex direction="column" width="15rem">
           <Box width="15rem" height="20rem">
-            <Image
-              src={img}
-              alt={title}
-              objectFit="cover"
-              width="100%"
-              height="100%"
-            />
+            <Link to={`/id/${product.title}`}>
+              <Image
+                src={img}
+                alt={title}
+                objectFit="cover"
+                width="100%"
+                height="100%"
+              />
+            </Link>
           </Box>
           <Flex direction="column" height="8rem" m="1" justify="space-between">
             <Flex justify="space-between" align="center">

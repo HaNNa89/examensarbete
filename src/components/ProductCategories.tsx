@@ -69,7 +69,7 @@ function ProductCategories({
               boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
             }}
           >
-            Filter
+            Categories
           </Box>
 
           <Collapse in={isFilterOpen} animateOpacity>
