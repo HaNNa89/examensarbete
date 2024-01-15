@@ -34,7 +34,6 @@ function Header() {
               colorScheme="white"
               aria-label="admin"
               fontSize={22}
-              display={{ base: 'none', md: 'block' }}
             />
           </Link>
           <Link to="/favorites">
