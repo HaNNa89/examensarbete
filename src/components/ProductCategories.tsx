@@ -14,7 +14,7 @@ function ProductCategories({
 }) {
   const categories = ['All', 'Brunch', 'Cake', 'Cookie'];
 
-  const [isFilterOpen, setIsFilterOpen] = useState(true);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [, setCurrentCategory] = useState<string | null>(null);
 
   const handleCategoryClick = (category: string) => {
@@ -69,7 +69,7 @@ function ProductCategories({
               boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
             }}
           >
-            Filter
+            Categories
           </Box>
 
           <Collapse in={isFilterOpen} animateOpacity>

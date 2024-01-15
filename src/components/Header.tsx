@@ -3,15 +3,26 @@ import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { PiUser } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
+import { useCart } from '../hooks/useCartContext';
 import SearchBar from './SearchBar';
 
 function Header() {
+  const { cartItems, openCart } = useCart();
+
+  const totalProductCount = cartItems.reduce(
+    (totalCount, product) => totalCount + product.quantity,
+    0
+  );
+
+  const handleCartClick = () => {
+    openCart();
+  };
+
   return (
     <Flex direction="column" px={6} py={4} align="center">
       <Flex
         flexDirection="row"
         justifyContent="space-between"
-        alignItems="center"
         align="center"
         width="100%"
       >
@@ -44,14 +55,33 @@ function Header() {
               fontSize={22}
             />
           </Link>
-          <Link to="/cart">
+          <Flex
+            position="relative"
+            align="center"
+            onClick={handleCartClick}
+            cursor="pointer"
+          >
             <IconButton
               icon={<HiOutlineShoppingBag />}
               colorScheme="white"
               aria-label="cart"
               fontSize={22}
             />
-          </Link>
+            {totalProductCount > 0 && (
+              <Box
+                color="white"
+                fontSize="0.8em"
+                position="absolute"
+                top="-8px"
+                right="-8px"
+                borderRadius="50%"
+                border="1px"
+                px={2}
+              >
+                {totalProductCount}
+              </Box>
+            )}
+          </Flex>
         </Flex>
       </Flex>
       <Flex display={{ base: 'block', md: 'none' }} mt={4}>
