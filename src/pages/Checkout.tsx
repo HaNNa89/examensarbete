@@ -1,4 +1,4 @@
-import { Button, Center, Divider, Flex, Heading } from "@chakra-ui/react";
+import { Center, Divider, Heading } from "@chakra-ui/react";
 import ShoppingCartCheckout from "../components/ShoppingCartCheckout";
 
 function Checkout() {
@@ -8,7 +8,7 @@ function Checkout() {
 			<Heading m="8">Checkout</Heading>
 			<Divider w={["20rem", "35rem", "49rem"]} />
 			<ShoppingCartCheckout />
-			<Divider w={["20rem", "35rem", "49rem"]} />
+			{/** 			<Divider w={["20rem", "35rem", "49rem"]} />
 			<Flex mt="2rem" justify="space-between" w={["20rem", "35rem", "49rem"]}>
 				<Heading>Total:</Heading>
 				<Button
@@ -26,7 +26,8 @@ function Checkout() {
 				>
 					Order
 				</Button>
-			</Flex>
+			</Flex>*/}
+
 			{/* fyll på med ett form där man kan skriva in namn och adress */}
 		</Center>
 	);
