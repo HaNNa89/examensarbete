@@ -71,14 +71,14 @@ function ShoppingCart() {
 											<Flex
 												justifyContent="center"
 												align="center"
-												border="1px"
+												// border="1px"
 												gap={2}
 												mt={2}
 												width="50px"
 											>
 												<Box
 													as="button"
-													fontSize="14px"
+													fontSize="24px"
 													fontWeight={600}
 													_hover={{
 														bg: "whiteAlpha.200",
@@ -89,10 +89,10 @@ function ShoppingCart() {
 												>
 													-
 												</Box>
-												<Text fontSize={14}>{product.quantity}</Text>
+												<Text fontSize={18}>{product.quantity}</Text>
 												<Box
 													as="button"
-													fontSize="14px"
+													fontSize="24px"
 													fontWeight={600}
 													_hover={{
 														bg: "whiteAlpha.200",
@@ -160,45 +160,22 @@ function ShoppingCart() {
 						)}
 					</DrawerBody>
 					<DrawerFooter>
-						<Flex gap={6}>
-							<Link to="/">
-								<Box
-									as="button"
-									width="120px"
-									height="40px"
-									color="white"
-									border="1px"
-									fontSize="14px"
-									fontWeight={600}
-									_hover={{
-										bg: "whiteAlpha.200",
-										boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-									}}
-									onClick={closeCart}
-								>
-									Go back
-								</Box>
-							</Link>
-							<Link to="checkout">
-								<Box
-									as="button"
-									width="120px"
-									height="40px"
-									color="white"
-									border="1px"
-									fontSize="14px"
-									fontWeight={600}
-									_hover={{
-										bg: "whiteAlpha.200",
+						<Box
+							as="button"
+							width="120px"
+							height="40px"
+							color="white"
+							border="1px"
+							fontSize="14px"
+							fontWeight={600}
+							_hover={{
+								bg: "whiteAlpha.200",
 
-										boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-									}}
-									onClick={closeCart}
-								>
-									Order
-								</Box>
-							</Link>
-						</Flex>
+								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+							}}
+						>
+							Order
+						</Box>
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
