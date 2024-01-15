@@ -40,10 +40,10 @@ function ShoppingCartCheckout() {
 							</Box>
 							<Flex
 								justifyContent="space-between"
-								direction={{ base: "column", sm: "row" }}
+								direction={{ base: "column", md: "row" }}
 								flex="1"
 								ml={4}
-								gap={{ base: 0, sm: "6" }}
+								gap={{ base: 0, sm: "4" }}
 							>
 								<Flex direction="column">
 									<Text>{product.title}</Text>
