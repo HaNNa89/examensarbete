@@ -1,4 +1,12 @@
-import { Box, Flex, IconButton, Image, Text } from "@chakra-ui/react";
+import {
+	Box,
+	Divider,
+	Flex,
+	Heading,
+	IconButton,
+	Image,
+	Text,
+} from "@chakra-ui/react";
 import { CiCircleMinus, CiCirclePlus, CiTrash } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCartContext";
@@ -12,20 +20,16 @@ function ShoppingCartCheckout() {
 		calculateTotal,
 		removeFromCart,
 	} = useCart();
+
 	return (
-		<>
+		<Flex direction="column" w="70%" align="stretch" py={4}>
 			{cartItems.length > 0 ? (
 				<>
 					{cartItems.map((product) => (
-						<Flex
-							key={product.id}
-							alignItems="flex-start"
-							m={["2", "8", "12"]}
-							gap={["0", "8", "24"]}
-						>
+						<Flex key={product.id} py={4}>
 							<Box
-								width={["6rem", "10rem", "10rem"]}
-								height={["11rem", "15rem", "15rem"]}
+								width={["4rem", "8rem", "8rem"]}
+								height={["9rem", "13rem", "13rem"]}
 							>
 								<Image
 									src={product.img}
@@ -35,58 +39,74 @@ function ShoppingCartCheckout() {
 									height="100%"
 								/>
 							</Box>
-							<Text m="2">{product.title}</Text>
-							<Text m="2">{product.price} SEK</Text>
-							<Flex alignItems="center">
-								<IconButton
-									icon={<CiCircleMinus />}
-									aria-label="Plus"
-									fontSize="1.5rem"
-									w="fit-content"
-									bg="none"
-									color="white"
-									_hover={{ bg: "none" }}
-									onClick={() => decreaseQuantity(product.id)}
-								/>
-								<Text>{product.quantity}</Text>
-								<IconButton
-									icon={<CiCirclePlus />}
-									aria-label="Minus"
-									fontSize="1.5rem"
-									w="fit-content"
-									bg="none"
-									color="white"
-									_hover={{ bg: "none" }}
-									onClick={() => increaseQuantity(product.id)}
-								/>
+							<Flex
+								justifyContent="space-between"
+								direction={{ base: "column", sm: "row" }}
+								flex="1"
+								ml={4}
+								gap={{ base: 0, sm: "6" }}
+							>
+								<Flex direction="column">
+									<Text>{product.title}</Text>
+									<Text>{product.price} SEK</Text>
+								</Flex>
+
+								<Flex
+									direction={{ base: "column", sm: "row" }}
+									justifyContent="space-between"
+									gap={{ base: 0, sm: "4" }}
+								>
+									<Flex ml={-2}>
+										<IconButton
+											icon={<CiCircleMinus />}
+											aria-label="Plus"
+											fontSize="1.5rem"
+											bg="none"
+											color="white"
+											_hover={{ bg: "none" }}
+											onClick={() => decreaseQuantity(product.id)}
+										/>
+										<Text mt={2}>{product.quantity}</Text>
+										<IconButton
+											icon={<CiCirclePlus />}
+											aria-label="Minus"
+											fontSize="1.5rem"
+											bg="none"
+											color="white"
+											_hover={{ bg: "none" }}
+											onClick={() => increaseQuantity(product.id)}
+										/>
+									</Flex>
+									<Flex ml={-2}>
+										<IconButton
+											icon={<CiTrash />}
+											aria-label="Trashcan"
+											fontSize="1.5rem"
+											bg="none"
+											color="white"
+											_hover={{ bg: "none" }}
+											onClick={() => removeFromCart(product.id)}
+										/>
+									</Flex>
+								</Flex>
 							</Flex>
-							<IconButton
-								icon={<CiTrash />}
-								aria-label="Trashcan"
-								fontSize="1.5rem"
-								w="fit-content"
-								bg="none"
-								color="white"
-								_hover={{ bg: "none" }}
-								onClick={() => removeFromCart(product.id)}
-							/>
 						</Flex>
 					))}
-
-					<Flex justifyContent="space-between" align="center" py={2} px={2}>
-						<Text>Total:</Text>
-						<Text>{calculateTotal()} SEK</Text>
+					<Divider mt={3} />
+					<Flex justifyContent="space-between" align="center" px={6} mt={2}>
+						<Heading fontSize={28}>Total:</Heading>
+						<Text fontSize="18px">{calculateTotal()} SEK</Text>
 					</Flex>
 				</>
 			) : (
-				<Flex direction="column" align="center">
-					<Text>Oops your shopping cart is empty...</Text>
+				<Flex direction="column" justifyContent="space-between" align="center">
+					<Text>Oops, your shopping cart is empty...</Text>
 					<Link to="/">
 						<Box
 							as="button"
 							width="250px"
 							height="40px"
-							mt={10}
+							mt={4}
 							bg="none"
 							color="white"
 							border="1px"
@@ -101,7 +121,7 @@ function ShoppingCartCheckout() {
 					</Link>
 				</Flex>
 			)}
-		</>
+		</Flex>
 	);
 }
 
