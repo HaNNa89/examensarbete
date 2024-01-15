@@ -10,17 +10,22 @@ import { useState } from 'react';
 function ProductCategories({
   onSelectCategory,
 }: {
-  onSelectCategory: (category: string) => void;
+  onSelectCategory: (category: string | null) => void;
 }) {
-  const categories = ['Brunch', 'Cake', 'Cookie'];
+  const categories = ['All', 'Brunch', 'Cake', 'Cookie'];
 
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [, setCurrentCategory] = useState<string | null>(null);
 
   const handleCategoryClick = (category: string) => {
-    setCurrentCategory(category);
-    onSelectCategory(category);
+    if (category === 'All') {
+      setCurrentCategory(null);
+    } else {
+      setCurrentCategory(category);
+    }
+    onSelectCategory(category === 'All' ? null : category);
   };
+
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
 
   return (
@@ -76,6 +81,9 @@ function ProductCategories({
                   onClick={() => handleCategoryClick(category)}
                   fontSize={18}
                   borderBottom="1px"
+                  _hover={{
+                    borderBottom: '2px',
+                  }}
                 >
                   {category}
                 </Box>
