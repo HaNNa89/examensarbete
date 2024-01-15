@@ -27,8 +27,8 @@ function ShoppingCartCheckout() {
 					{cartItems.map((product) => (
 						<Flex key={product.id} py={4}>
 							<Box
-								width={["4rem", "8rem", "8rem"]}
-								height={["9rem", "13rem", "13rem"]}
+								width={["6rem", "8rem", "8rem"]}
+								height={["11rem", "13rem", "13rem"]}
 							>
 								<Image
 									src={product.img}
