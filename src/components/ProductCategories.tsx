@@ -14,7 +14,7 @@ function ProductCategories({
 }) {
   const categories = ['All', 'Brunch', 'Cake', 'Cookie'];
 
-  const [isFilterOpen, setIsFilterOpen] = useState(true);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [, setCurrentCategory] = useState<string | null>(null);
 
   const handleCategoryClick = (category: string) => {
