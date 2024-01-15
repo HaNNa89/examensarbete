@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCartContext";
 
 function ShoppingCartCheckout() {
-	//const product = MOCK_PRODUCTS[0];
 	const {
 		cartItems,
 		decreaseQuantity,
@@ -99,12 +98,19 @@ function ShoppingCartCheckout() {
 					</Flex>
 				</>
 			) : (
-				<Flex direction="column" justifyContent="space-between" align="center">
-					<Text>Oops, your shopping cart is empty...</Text>
+				<Flex
+					direction="column"
+					justifyContent="space-between"
+					align="center"
+					py={6}
+				>
+					<Text fontSize={{ base: "16px", sm: "18px" }} mb={4}>
+						Oops, your shopping cart is empty...
+					</Text>
 					<Link to="/">
 						<Box
 							as="button"
-							width="250px"
+							width="200px"
 							height="40px"
 							mt={4}
 							bg="none"
