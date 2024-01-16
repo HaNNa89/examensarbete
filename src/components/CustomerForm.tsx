@@ -1,4 +1,17 @@
 import { Flex, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
+import * as yup from "yup";
+
+const CustomerSchema = yup.object({
+	firstName: yup.string().min(2).required("Please enter your first name"),
+	lastName: yup.string().min(2).required("Please enter your last name"),
+	email: yup.string().required("Please enter your email addres"),
+	phone: yup.string().min(10).required("Please enter your phone number"),
+	address: yup.string().min(4).required("Please enter your address"),
+	zipcode: yup.string().min(5).max(6).required("Please enter your "),
+	city: yup.string().min(2).required("Please enter your city"),
+});
+
+export type Customer = yup.InferType<typeof CustomerSchema>;
 
 function CustomerForm() {
 	return (
