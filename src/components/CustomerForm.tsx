@@ -3,6 +3,7 @@ import {
 	Flex,
 	FormControl,
 	FormLabel,
+	Heading,
 	Input,
 	Text,
 	VStack,
@@ -17,7 +18,7 @@ const CustomerSchema = yup.object({
 	email: yup.string().required("Please enter your email addres"),
 	phone: yup.string().min(10).required("Please enter your phone number"),
 	address: yup.string().min(4).required("Please enter your address"),
-	zipcode: yup.string().min(5).max(6).required("Please enter your "),
+	zipcode: yup.string().min(5).max(6).required("Please enter a valid zip code"),
 	city: yup.string().min(2).required("Please enter your city"),
 });
 
@@ -40,16 +41,19 @@ function CustomerForm() {
 
 	return (
 		<Form onSubmit={formik.handleSubmit}>
-			<Flex px={4} py={6}>
-				<VStack spacing={2}>
-					<Flex gap={2}>
+			<Flex direction="column" justifyContent="center" px={4} py={10}>
+				<Heading mb={12} textAlign="center">
+					Your contact details
+				</Heading>
+				<VStack spacing={6}>
+					<Flex gap={4}>
 						<FormControl>
-							<FormLabel>First name</FormLabel>
+							<FormLabel ml={2}>First name</FormLabel>
 							<Input
-								name="first name"
+								name="firstName"
 								type="text"
-								id="first name"
-								autoComplete="first name"
+								id="firstName"
+								autoComplete="firstName"
 								value={formik.values.firstName}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
@@ -60,12 +64,12 @@ function CustomerForm() {
 						</FormControl>
 
 						<FormControl>
-							<FormLabel>Last name</FormLabel>
+							<FormLabel ml={2}>Last name</FormLabel>
 							<Input
-								name="last name"
+								name="lastName"
 								type="text"
-								id="last name"
-								autoComplete="last name"
+								id="lastName"
+								autoComplete="lastName"
 								value={formik.values.lastName}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
@@ -77,7 +81,7 @@ function CustomerForm() {
 					</Flex>
 
 					<FormControl>
-						<FormLabel>Email</FormLabel>
+						<FormLabel ml={2}>Email</FormLabel>
 						<Input
 							name="email"
 							type="text"
@@ -92,7 +96,7 @@ function CustomerForm() {
 						)}
 					</FormControl>
 					<FormControl>
-						<FormLabel>Phone number</FormLabel>
+						<FormLabel ml={2}>Phone number</FormLabel>
 						<Input
 							name="phone"
 							type="tel"
@@ -108,7 +112,7 @@ function CustomerForm() {
 					</FormControl>
 
 					<FormControl>
-						<FormLabel>Address</FormLabel>
+						<FormLabel ml={2}>Address</FormLabel>
 						<Input
 							name="address"
 							type="text"
@@ -123,9 +127,9 @@ function CustomerForm() {
 						)}
 					</FormControl>
 
-					<Flex gap={2}>
+					<Flex gap={4}>
 						<FormControl>
-							<FormLabel>Zip code</FormLabel>
+							<FormLabel ml={2}>Zip code</FormLabel>
 							<Input
 								name="zipcode"
 								type="text"
@@ -141,7 +145,7 @@ function CustomerForm() {
 						</FormControl>
 
 						<FormControl>
-							<FormLabel>City</FormLabel>
+							<FormLabel ml={2}>City</FormLabel>
 							<Input
 								name="city"
 								type="text"
@@ -155,10 +159,23 @@ function CustomerForm() {
 								<Text color="red">{formik.errors.city}</Text>
 							)}
 						</FormControl>
-
-						<Flex>
-							<Button type="submit">Order</Button>
-						</Flex>
+					</Flex>
+					<Flex py={10}>
+						<Button
+							type="submit"
+							width="200px"
+							height="40px"
+							bg="none"
+							color="white"
+							border="1px"
+							_hover={{
+								bg: "whiteAlpha.200",
+								borderWidth: "2px",
+								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+							}}
+						>
+							Place Order
+						</Button>
 					</Flex>
 				</VStack>
 			</Flex>
