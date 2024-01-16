@@ -4,6 +4,7 @@ import {
 	FormControl,
 	FormLabel,
 	Input,
+	Text,
 	VStack,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -45,27 +46,33 @@ function CustomerForm() {
 						<FormControl>
 							<FormLabel>First name</FormLabel>
 							<Input
-								name="firstName"
+								name="first name"
 								type="text"
-								id="firstName"
-								autoComplete="firstName"
+								id="first name"
+								autoComplete="first name"
 								value={formik.values.firstName}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
-							></Input>
+							/>
+							{formik.touched.firstName && formik.errors.firstName && (
+								<Text color="red">{formik.errors.firstName}</Text>
+							)}
 						</FormControl>
 
 						<FormControl>
 							<FormLabel>Last name</FormLabel>
 							<Input
-								name="lastName"
+								name="last name"
 								type="text"
-								id="lastName"
-								autoComplete="lastName"
+								id="last name"
+								autoComplete="last name"
 								value={formik.values.lastName}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
-							></Input>
+							/>
+							{formik.touched.lastName && formik.errors.lastName && (
+								<Text color="red">{formik.errors.lastName}</Text>
+							)}
 						</FormControl>
 					</Flex>
 
@@ -79,7 +86,10 @@ function CustomerForm() {
 							value={formik.values.email}
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
-						></Input>
+						/>
+						{formik.touched.email && formik.errors.email && (
+							<Text color="red">{formik.errors.email}</Text>
+						)}
 					</FormControl>
 					<FormControl>
 						<FormLabel>Phone number</FormLabel>
@@ -91,7 +101,10 @@ function CustomerForm() {
 							value={formik.values.phone}
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
-						></Input>
+						/>
+						{formik.touched.phone && formik.errors.phone && (
+							<Text color="red">{formik.errors.phone}</Text>
+						)}
 					</FormControl>
 
 					<FormControl>
@@ -104,7 +117,10 @@ function CustomerForm() {
 							value={formik.values.address}
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
-						></Input>
+						/>
+						{formik.touched.address && formik.errors.address && (
+							<Text color="red">{formik.errors.address}</Text>
+						)}
 					</FormControl>
 
 					<Flex gap={2}>
@@ -118,7 +134,10 @@ function CustomerForm() {
 								value={formik.values.zipcode}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
-							></Input>
+							/>
+							{formik.touched.zipcode && formik.errors.zipcode && (
+								<Text color="red">{formik.errors.zipcode}</Text>
+							)}
 						</FormControl>
 
 						<FormControl>
@@ -131,7 +150,10 @@ function CustomerForm() {
 								value={formik.values.city}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
-							></Input>
+							/>
+							{formik.touched.city && formik.errors.city && (
+								<Text color="red">{formik.errors.city}</Text>
+							)}
 						</FormControl>
 
 						<Flex>
