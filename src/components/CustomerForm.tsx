@@ -9,8 +9,9 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import * as yup from "yup";
+import { useOrder } from "../hooks/useOrderContext";
 
 const CustomerSchema = yup.object({
 	firstName: yup.string().min(2).required("Please enter your first name"),
@@ -25,6 +26,7 @@ const CustomerSchema = yup.object({
 export type Customer = yup.InferType<typeof CustomerSchema>;
 
 function CustomerForm() {
+	const { handleOrderSubmit } = useOrder();
 	const formik = useFormik({
 		initialValues: {
 			firstName: "",
@@ -36,7 +38,9 @@ function CustomerForm() {
 			city: "",
 		},
 		validationSchema: CustomerSchema,
-		onSubmit: (values) => {},
+		onSubmit: (values) => {
+			handleOrderSubmit(values);
+		},
 	});
 
 	return (
@@ -45,7 +49,7 @@ function CustomerForm() {
 				<Heading mb={12} textAlign="center">
 					Your contact details
 				</Heading>
-				<VStack spacing={6}>
+				<VStack spacing={4}>
 					<Flex gap={4}>
 						<FormControl>
 							<FormLabel ml={2}>First name</FormLabel>
@@ -161,21 +165,23 @@ function CustomerForm() {
 						</FormControl>
 					</Flex>
 					<Flex py={10}>
-						<Button
-							type="submit"
-							width="200px"
-							height="40px"
-							bg="none"
-							color="white"
-							border="1px"
-							_hover={{
-								bg: "whiteAlpha.200",
-								borderWidth: "2px",
-								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-							}}
-						>
-							Place Order
-						</Button>
+						<Link to="/orderconfirmation">
+							<Button
+								type="submit"
+								width="200px"
+								height="40px"
+								bg="none"
+								color="white"
+								border="1px"
+								_hover={{
+									bg: "whiteAlpha.200",
+									borderWidth: "2px",
+									boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+								}}
+							>
+								Place Your Order
+							</Button>
+						</Link>
 					</Flex>
 				</VStack>
 			</Flex>
