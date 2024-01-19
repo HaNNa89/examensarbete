@@ -1,11 +1,22 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Center, Flex, Heading } from '@chakra-ui/react';
+import { MOCK_PRODUCTS, Product } from '../../data/mock';
+import ProductForm from '../components/ProductForm';
 
 function Admin() {
-	return (
-		<Flex>
-			<Heading>Admin!</Heading>
-		</Flex>
-	);
+  const addProduct = (newProduct: Product) => {
+    MOCK_PRODUCTS.push(newProduct);
+    console.log('Product added:', newProduct);
+  };
+
+  return (
+    // render ut alla producter och lägg till knapp 'Add Product' samt 'Delite' och 'Edit'
+    <Center>
+      <Flex direction="column" align="center" gap="6" m="6">
+        <Heading>Admin!</Heading>
+        <ProductForm onSubmit={addProduct} />
+      </Flex>
+    </Center>
+  );
 }
 
 export default Admin;

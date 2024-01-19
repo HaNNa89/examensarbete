@@ -5,6 +5,7 @@ interface Product {
   title: string;
   img: string;
   price: number;
+  id: number;
   isLiked: boolean;
 }
 
@@ -64,12 +65,16 @@ const FavoritesContextProvider: React.FC<{ children: React.ReactNode }> =
 
     return (
       <FavoritesContext.Provider
-        value={{ favoriteProducts, setFavoriteProducts }}
+        value={
+          {
+            favoriteProducts,
+            setFavoriteProducts,
+          } as unknown as FavoritesContextType
+        }
       >
         {children}
       </FavoritesContext.Provider>
     );
   };
-
 // eslint-disable-next-line react-refresh/only-export-components
 export { FavoritesContextProvider, useFavoritesContext, useToggleFavorite };

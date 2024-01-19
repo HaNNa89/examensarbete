@@ -22,7 +22,7 @@ interface Product {
   title: string;
   price: number;
   id: number;
-  subheading: string;
+  subheading?: string;
 }
 
 interface CartContext {
@@ -46,7 +46,13 @@ function ProductCard({ product }: { product: Product }) {
       (favProduct) => favProduct.title === title
     );
 
-    toggleProductFavorite({ title, img, price, isLiked });
+    toggleProductFavorite({
+      title,
+      img,
+      price,
+      isLiked,
+      id: 0,
+    });
   };
 
   const cart = useCart() as CartContext;
