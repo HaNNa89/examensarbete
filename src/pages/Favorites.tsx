@@ -1,11 +1,12 @@
 import { Flex, Grid, Heading, Text } from '@chakra-ui/react';
+import { MOCK_PRODUCTS, Product } from '../../data/mock';
 import ProductCard from '../components/ProductCard';
-
 interface FavoriteProduct {
   img: string;
   title: string;
   price: number;
   id: number;
+  isLiked: boolean;
 }
 
 function Favorites() {
@@ -13,11 +14,17 @@ function Favorites() {
     localStorage.getItem('favoriteProducts') || '[]'
   );
 
+  const favoriteProducts: Product[] = MOCK_PRODUCTS.filter((product) =>
+    favoriteProductsFromLocalStorage.some(
+      (favProduct) => favProduct.title === product.title
+    )
+  );
+
   return (
     <Flex direction="column" alignItems="center">
       <Heading m="8">Favorites!</Heading>
-      {favoriteProductsFromLocalStorage.length === 0 ? (
-        <Text>No products added</Text>
+      {favoriteProducts.length === 0 ? (
+        <Text>No favorites added</Text>
       ) : (
         <Flex flexWrap="wrap" justifyContent="center">
           <Grid
@@ -29,11 +36,9 @@ function Favorites() {
             gap={6}
             justifyContent="center"
           >
-            {favoriteProductsFromLocalStorage.map(
-              (product: FavoriteProduct, index) => (
-                <ProductCard key={index} product={product} />
-              )
-            )}
+            {favoriteProducts.map((product: Product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
           </Grid>
         </Flex>
       )}
