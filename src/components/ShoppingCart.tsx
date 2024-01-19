@@ -20,6 +20,11 @@ import { useCart } from "../hooks/useCartContext";
 
 function ShoppingCart() {
 	const navigate = useNavigate();
+	const handleNavigateToCheckout = () => {
+		closeCart();
+		navigate("/checkout");
+	};
+
 	const {
 		isOpen,
 		closeCart,
@@ -64,7 +69,6 @@ function ShoppingCart() {
 											<Flex
 												justifyContent="center"
 												align="center"
-												// border="1px"
 												gap={2}
 												mt={2}
 												width="50px"
@@ -165,9 +169,9 @@ function ShoppingCart() {
 								bg: "whiteAlpha.200",
 								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
 							}}
-							onClick={closeCart}
+							onClick={handleNavigateToCheckout}
 						>
-							Order
+							Checkout
 						</Box>
 					</DrawerFooter>
 				</DrawerContent>
