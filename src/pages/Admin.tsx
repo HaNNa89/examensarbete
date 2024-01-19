@@ -9,6 +9,7 @@ function Admin() {
   };
 
   return (
+    // render ut alla producter och lägg till knapp 'Add Product' samt 'Delite' och 'Edit'
     <Center>
       <Flex direction="column" align="center" gap="6" m="6">
         <Heading>Admin!</Heading>
