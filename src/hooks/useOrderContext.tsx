@@ -15,33 +15,51 @@ interface CartItem extends Product {
 }
 
 interface Order {
+	orderId: string;
+	orderDate: string;
 	cart: CartItem[];
+	totalPrice: number;
 	customerData: Customer;
 }
 
 interface OrderContextProps {
 	order?: Order;
-	handleOrderSubmit: (customerData: Customer, cartItems: CartItem[]) => void;
+	handleOrderSubmit: (customerData: Customer) => void;
 }
 
-const OrderContext = createContext<OrderContextProps | undefined>(undefined);
+const OrderContext = createContext<OrderContextProps>(null as any);
 
 export const useOrder = () => useContext(OrderContext);
 
 export function OrderProvider({ children }: { children: React.ReactNode }) {
-	const [order, setOrder] = useState<Order | undefined>(undefined);
+	const [order, setOrder] = useState<Order | undefined>();
+
 	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
 		"cartItems",
+
 		[]
 	);
+	console.log("Cart Items in OrderProvider:", cartItems);
 
 	const handleOrderSubmit = (customerData: Customer) => {
-		const createOrder: Order = {
+		console.log("Handle Order Submit Called");
+		const orderId = Date.now().toString();
+		const orderDate = new Date().toString();
+		const totalPrice = cartItems.reduce(
+			(total: number, item: { price: number; quantity: number }) =>
+				total + item.price * item.quantity,
+			0
+		);
+		const order: Order = {
+			orderId,
+			orderDate,
 			cart: cartItems,
-			customerData: customerData,
+			totalPrice,
+			customerData,
 		};
-		setOrder(createOrder);
+		setOrder(order);
 	};
+	console.log("Handle Order Submit Called");
 
 	const orderValues: OrderContextProps = {
 		order,

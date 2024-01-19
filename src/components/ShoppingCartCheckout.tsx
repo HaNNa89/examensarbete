@@ -10,7 +10,6 @@ import {
 import { CiCircleMinus, CiCirclePlus, CiTrash } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCartContext";
-
 function ShoppingCartCheckout() {
 	const {
 		cartItems,

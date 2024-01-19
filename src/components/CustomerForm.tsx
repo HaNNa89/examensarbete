@@ -9,9 +9,8 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { Form, Link } from "react-router-dom";
+import { Form } from "react-router-dom";
 import * as yup from "yup";
-import { useOrder } from "../hooks/useOrderContext";
 
 const CustomerSchema = yup.object({
 	firstName: yup.string().min(2).required("Please enter your first name"),
@@ -25,8 +24,7 @@ const CustomerSchema = yup.object({
 
 export type Customer = yup.InferType<typeof CustomerSchema>;
 
-function CustomerForm() {
-	const { handleOrderSubmit } = useOrder();
+function CustomerForm({ onSubmit }: { onSubmit: (values: Customer) => void }) {
 	const formik = useFormik({
 		initialValues: {
 			firstName: "",
@@ -39,7 +37,7 @@ function CustomerForm() {
 		},
 		validationSchema: CustomerSchema,
 		onSubmit: (values) => {
-			handleOrderSubmit(values);
+			onSubmit(values);
 		},
 	});
 
@@ -165,23 +163,21 @@ function CustomerForm() {
 						</FormControl>
 					</Flex>
 					<Flex py={10}>
-						<Link to="/orderconfirmation">
-							<Button
-								type="submit"
-								width="200px"
-								height="40px"
-								bg="none"
-								color="white"
-								border="1px"
-								_hover={{
-									bg: "whiteAlpha.200",
-									borderWidth: "2px",
-									boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-								}}
-							>
-								Place Your Order
-							</Button>
-						</Link>
+						<Button
+							type="submit"
+							width="200px"
+							height="40px"
+							bg="none"
+							color="white"
+							border="1px"
+							_hover={{
+								bg: "whiteAlpha.200",
+								borderWidth: "2px",
+								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+							}}
+						>
+							Place Your Order
+						</Button>
 					</Flex>
 				</VStack>
 			</Flex>

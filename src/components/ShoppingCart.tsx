@@ -15,10 +15,11 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { AiFillDelete } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/useCartContext";
 
 function ShoppingCart() {
+	const navigate = useNavigate();
 	const {
 		isOpen,
 		closeCart,
@@ -152,24 +153,22 @@ function ShoppingCart() {
 						)}
 					</DrawerBody>
 					<DrawerFooter>
-						<Link to="checkout">
-							<Box
-								as="button"
-								width="120px"
-								height="40px"
-								color="white"
-								border="1px"
-								fontSize="14px"
-								fontWeight={600}
-								_hover={{
-									bg: "whiteAlpha.200",
-									boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
-								}}
-								onClick={closeCart}
-							>
-								Order
-							</Box>
-						</Link>
+						<Box
+							as="button"
+							width="120px"
+							height="40px"
+							color="white"
+							border="1px"
+							fontSize="14px"
+							fontWeight={600}
+							_hover={{
+								bg: "whiteAlpha.200",
+								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
+							}}
+							onClick={closeCart}
+						>
+							Order
+						</Box>
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
