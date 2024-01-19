@@ -14,7 +14,6 @@ function Checkout() {
 		navigate("/orderconfirmation");
 	};
 
-	console.log("Current order in Checkout:", order);
 	return (
 		<Center flexDir="column">
 			<Heading m="8">Checkout</Heading>

@@ -39,7 +39,6 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
 		[]
 	);
-	console.log("Cart Items in OrderProvider:", cartItems);
 
 	const handleOrderSubmit = (customerData: Customer) => {
 		console.log("Handle Order Submit Called");
@@ -59,7 +58,6 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 		};
 		setOrder(order);
 	};
-	console.log("Handle Order Submit Called");
 
 	const orderValues: OrderContextProps = {
 		order,
