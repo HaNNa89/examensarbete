@@ -15,6 +15,8 @@ import {
 import { useCart } from "../hooks/useCartContext";
 import { useOrder } from "../hooks/useOrderContext";
 
+import { BsPatchCheck } from "react-icons/bs";
+
 function OrderConfirmation() {
 	const isLargeScreen = useBreakpointValue({ base: false, md: true });
 	const { order } = useOrder();
@@ -24,20 +26,44 @@ function OrderConfirmation() {
 		return <Text>no order available</Text>;
 	}
 	return (
-		<Flex direction="column" align="center" justify="center" p="4">
-			<Heading as="h1" mt="4" mb="6">
+		<Flex direction="column" align="center" justify="center" p="4" py={10}>
+			<Heading as="h1" mt="4" mb="10">
 				Order Confirmation
 			</Heading>
-			<Text fontSize="lg" mb="4">
-				Thank you for your order
+
+			<Text fontSize={50} mb={6}>
+				<BsPatchCheck />
 			</Text>
-			<Text fontSize="lg" mb="6">
-				Order: {order.orderId}
-			</Text>
-			<Text fontSize="lg" mb="6">
-				Order date: {order.orderDate}
-			</Text>
-			<Flex overflowX="auto">
+
+			<Flex direction="column" align="center" py={6}>
+				<Heading fontSize="28" fontWeight={700} mb="4">
+					Thank you {order.customerData.firstName} for your order!
+				</Heading>
+				<Text fontSize="20" mb="2">
+					Order number: {order.orderId}
+				</Text>
+				<Text fontSize="20" mb="6">
+					Order date: {order.orderDate}
+				</Text>
+			</Flex>
+
+			<Flex direction="column" align="center">
+				<Heading fontSize="28" mb="4">
+					Contact Information
+				</Heading>
+				<Flex fontSize="20" gap={2}>
+					<Text>{order.customerData.firstName}</Text>
+					<Text>{order.customerData.lastName}</Text>
+				</Flex>
+				<Text fontSize="20">{order.customerData.phone}</Text>
+				<Text fontSize="20">{order.customerData.email}</Text>
+				<Text fontSize="20">{order.customerData.address}</Text>
+				<Flex fontSize="20" gap={2} mb={6}>
+					<Text>{order.customerData.zipcode}</Text>
+					<Text>{order.customerData.city}</Text>
+				</Flex>
+			</Flex>
+			<Flex overflowX="auto" mt={10}>
 				{isLargeScreen ? (
 					<Table variant="simple" minWidth="80%">
 						<Thead>
