@@ -43,7 +43,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 	const handleOrderSubmit = (customerData: Customer) => {
 		console.log("Handle Order Submit Called");
 		const orderId = Date.now().toString();
-		const orderDate = new Date().toString();
+		const orderDate = new Date().toLocaleDateString();
 		const totalPrice = cartItems.reduce(
 			(total: number, item: { price: number; quantity: number }) =>
 				total + item.price * item.quantity,
