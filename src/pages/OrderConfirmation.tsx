@@ -71,36 +71,36 @@ function OrderConfirmation() {
 								<Th color="white" fontSize={["sm", "md", "lg"]}>
 									Product
 								</Th>
+								<Th color="white" fontSize={["sm", "md", "lg"]}></Th>
 								<Th color="white" fontSize={["sm", "md", "lg"]}>
-									Pieces
-								</Th>
-								<Th color="white" fontSize={["sm", "md", "lg"]}>
-									Date
-								</Th>
-								<Th color="white" fontSize={["sm", "md", "lg"]}>
-									Recipient
+									Quantity
 								</Th>
 								<Th color="white" fontSize={["sm", "md", "lg"]}>
 									Price
 								</Th>
+								<Th color="white" fontSize={["sm", "md", "lg"]}>
+									Total
+								</Th>
 							</Tr>
 						</Thead>
-						{order.cart.map((item) => (
-							<Tbody key={item.id}>
+						{order.cart.map((cartItems) => (
+							<Tbody key={cartItems.id}>
 								<Tr>
 									<Td w={["30%", "20%", "20%"]} fontSize={["sm", "md", "lg"]}>
 										<Image
-											src={item.img}
-											alt={item.title}
+											src={cartItems.img}
+											alt={cartItems.title}
 											objectFit="cover"
 											width="100%"
 											height="100%"
 										/>
 									</Td>
-									<Td fontSize={["sm", "md", "lg"]}>{item.quantity}</Td>
-
-									<Td fontSize={["sm", "md", "lg"]}>{order.totalPrice}</Td>
-									<Td fontSize={["sm", "md", "lg"]}>{item.price}</Td>
+									<Td fontSize={["sm", "md", "lg"]}>{cartItems.title}</Td>
+									<Td fontSize={["sm", "md", "lg"]}>{cartItems.quantity}</Td>
+									<Td fontSize={["sm", "md", "lg"]}>{cartItems.price}</Td>
+									<Td fontSize={["sm", "md", "lg"]}>
+										{cartItems.price * cartItems.quantity}
+									</Td>
 								</Tr>
 							</Tbody>
 						))}
@@ -114,27 +114,35 @@ function OrderConfirmation() {
 								</Th>
 							</Tr>
 						</Thead>
-						{order.cart.map((item) => (
+						{order.cart.map((cartItems) => (
 							<Tbody>
 								<Tr>
 									<Td fontSize={["sm", "md", "lg"]} mb={["4", "0"]}>
 										<Flex direction="column" align="start">
 											<Box w="30">
 												<Image
-													src={item.img}
-													alt={item.title}
+													src={cartItems.img}
+													alt={cartItems.title}
 													objectFit="cover"
 													width="100%"
 													height="auto"
 													mb={["4", "0"]}
 												/>
 											</Box>
-											<Text fontSize={["sm", "md", "lg"]}>{item.quantity}</Text>
-
-											<Text fontSize={["sm", "md", "lg"]}>
-												{order.totalPrice}
-											</Text>
-											<Text fontSize={["sm", "md", "lg"]}>{item.price}</Text>
+											<Flex>
+												<Text fontSize={["sm", "md", "lg"]}>
+													Product: {cartItems.title}
+												</Text>
+												<Text fontSize={["sm", "md", "lg"]}>
+													Quantity: {cartItems.quantity}
+												</Text>
+												<Text fontSize={["sm", "md", "lg"]}>
+													Price: {cartItems.price}
+												</Text>
+												<Text fontSize={["sm", "md", "lg"]}>
+													Total: {cartItems.price * cartItems.quantity}
+												</Text>
+											</Flex>
 										</Flex>
 									</Td>
 								</Tr>
