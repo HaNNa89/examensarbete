@@ -153,7 +153,21 @@ function ProductForm({ onSubmit }: ProductFormProps) {
                   </Box>
                 </Flex>
               </VStack>
-              <Button type="submit" mt="3">
+              <Button
+                type="submit"
+                mt={3}
+                py={1}
+                px={6}
+                fontSize={18}
+                border="1px"
+                bgColor="#1A1A1C"
+                textColor="white"
+                _hover={{
+                  bg: 'whiteAlpha.200',
+                  borderWidth: '2px',
+                  boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
+                }}
+              >
                 Add Product
               </Button>
             </form>
