@@ -21,7 +21,7 @@ function OrderConfirmation() {
 	const isLargeScreen = useBreakpointValue({ base: false, md: true });
 	const { order } = useOrder();
 	console.log("Hej Order in OrderConfirmation:", order);
-	const { cartItems } = useCart();
+	useCart();
 	if (!order) {
 		return <Text>no order available</Text>;
 	}
@@ -31,34 +31,44 @@ function OrderConfirmation() {
 				Order Confirmation
 			</Heading>
 
-			<Text fontSize={50} mb={6}>
+			<Text fontSize={60} mb={6}>
 				<BsPatchCheck />
 			</Text>
 
 			<Flex direction="column" align="center" py={6}>
-				<Heading fontSize="28" fontWeight={700} mb="4">
+				<Heading
+					fontSize={{ base: "22", sm: "24", md: "28" }}
+					fontWeight={700}
+					mb="4"
+				>
 					Thank you {order.customerData.firstName} for your order!
 				</Heading>
-				<Text fontSize="20" mb="2">
+				<Text fontSize={{ base: "16", sm: "18", md: "20" }} mb="2">
 					Order number: {order.orderId}
 				</Text>
-				<Text fontSize="20" mb="6">
+				<Text fontSize={{ base: "16", sm: "18", md: "20" }} mb="6">
 					Order date: {order.orderDate}
 				</Text>
 			</Flex>
 
 			<Flex direction="column" align="center">
-				<Heading fontSize="28" mb="4">
+				<Heading fontSize={{ base: "22", sm: "24", md: "28" }} mb="4">
 					Contact Information
 				</Heading>
-				<Flex fontSize="20" gap={2}>
+				<Flex fontSize={{ base: "16", sm: "18", md: "20" }} gap={2}>
 					<Text>{order.customerData.firstName}</Text>
 					<Text>{order.customerData.lastName}</Text>
 				</Flex>
-				<Text fontSize="20">{order.customerData.phone}</Text>
-				<Text fontSize="20">{order.customerData.email}</Text>
-				<Text fontSize="20">{order.customerData.address}</Text>
-				<Flex fontSize="20" gap={2} mb={6}>
+				<Text fontSize={{ base: "16", sm: "18", md: "20" }}>
+					{order.customerData.phone}
+				</Text>
+				<Text fontSize={{ base: "16", sm: "18", md: "20" }}>
+					{order.customerData.email}
+				</Text>
+				<Text fontSize={{ base: "16", sm: "18", md: "20" }}>
+					{order.customerData.address}
+				</Text>
+				<Flex fontSize={{ base: "16", sm: "18", md: "20" }} gap={2} mb={6}>
 					<Text>{order.customerData.zipcode}</Text>
 					<Text>{order.customerData.city}</Text>
 				</Flex>
@@ -97,9 +107,9 @@ function OrderConfirmation() {
 									</Td>
 									<Td fontSize={["sm", "md", "lg"]}>{cartItems.title}</Td>
 									<Td fontSize={["sm", "md", "lg"]}>{cartItems.quantity}</Td>
-									<Td fontSize={["sm", "md", "lg"]}>{cartItems.price}</Td>
+									<Td fontSize={["sm", "md", "lg"]}>{cartItems.price} SEK</Td>
 									<Td fontSize={["sm", "md", "lg"]}>
-										{cartItems.price * cartItems.quantity}
+										{cartItems.price * cartItems.quantity} SEK
 									</Td>
 								</Tr>
 							</Tbody>
@@ -126,10 +136,10 @@ function OrderConfirmation() {
 													objectFit="cover"
 													width="100%"
 													height="auto"
-													mb={["4", "0"]}
+													mb={["4", "6"]}
 												/>
 											</Box>
-											<Flex>
+											<Flex gap={4}>
 												<Text fontSize={["sm", "md", "lg"]}>
 													Product: {cartItems.title}
 												</Text>
@@ -137,10 +147,10 @@ function OrderConfirmation() {
 													Quantity: {cartItems.quantity}
 												</Text>
 												<Text fontSize={["sm", "md", "lg"]}>
-													Price: {cartItems.price}
+													Price: {cartItems.price} SEK
 												</Text>
 												<Text fontSize={["sm", "md", "lg"]}>
-													Total: {cartItems.price * cartItems.quantity}
+													Total: {cartItems.price * cartItems.quantity} SEK
 												</Text>
 											</Flex>
 										</Flex>
@@ -153,7 +163,9 @@ function OrderConfirmation() {
 			</Flex>
 			<Flex align="center" gap="2" mt="6">
 				<Heading fontSize={["lg", "xl", "2xl"]}>Total Price:</Heading>
-				<Text fontSize={["md", "lg", "xl"]}>{order.totalPrice}</Text>
+				<Text fontWeight={800} fontSize={["md", "lg", "xl"]}>
+					{order.totalPrice} SEK
+				</Text>
 			</Flex>
 		</Flex>
 	);
