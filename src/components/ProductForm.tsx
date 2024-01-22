@@ -62,6 +62,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
     e.preventDefault();
     onSubmit(formData);
     // Spara till local storage och rensa formet efter submit
+    // Se till så att produkten kommer upp direkt på sidan
   };
 
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
