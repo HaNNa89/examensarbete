@@ -86,7 +86,7 @@ function OrderConfirmation() {
 									Quantity
 								</Th>
 								<Th color="white" fontSize={["sm", "md", "lg"]}>
-									Price
+									Pieces
 								</Th>
 								<Th color="white" fontSize={["sm", "md", "lg"]}>
 									Total
@@ -107,7 +107,7 @@ function OrderConfirmation() {
 									</Td>
 									<Td fontSize={["sm", "md", "lg"]}>{cartItems.title}</Td>
 									<Td fontSize={["sm", "md", "lg"]}>{cartItems.quantity}</Td>
-									<Td fontSize={["sm", "md", "lg"]}>{cartItems.price} SEK</Td>
+									<Td fontSize={["sm", "md", "lg"]}>{cartItems.subheading}</Td>
 									<Td fontSize={["sm", "md", "lg"]}>
 										{cartItems.price * cartItems.quantity} SEK
 									</Td>
@@ -147,7 +147,7 @@ function OrderConfirmation() {
 													Quantity: {cartItems.quantity}
 												</Text>
 												<Text fontSize={["sm", "md", "lg"]}>
-													Pices: {cartItems.subheading}
+													Pieces: {cartItems.subheading}
 												</Text>
 												<Text fontSize={["sm", "md", "lg"]}>
 													Total: {cartItems.price * cartItems.quantity} SEK
