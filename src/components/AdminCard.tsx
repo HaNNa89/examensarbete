@@ -16,7 +16,7 @@ function AdminCard({ product }: { product: Product }) {
   return (
     <Flex direction="column" width="15rem" m="6">
       <Box width="15rem" height="20rem">
-        <Link to={`/id/${product.title}`}>
+        <Link to={`/admin/${product.id}`}>
           <Image
             src={img}
             alt={title}

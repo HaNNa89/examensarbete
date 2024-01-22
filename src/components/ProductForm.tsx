@@ -12,7 +12,9 @@ import {
   useBreakpointValue,
   VStack,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { MOCK_PRODUCTS, Product } from '../../data/mock';
 
 interface ProductFormProps {
   onSubmit: (formData: FormData) => void;
@@ -30,6 +32,8 @@ interface FormData {
 }
 
 function ProductForm({ onSubmit }: ProductFormProps) {
+  const { productId } = useParams();
+
   const [formData, setFormData] = useState<FormData>({
     title: '',
     subheading: '',
@@ -40,6 +44,25 @@ function ProductForm({ onSubmit }: ProductFormProps) {
     ingredients: [],
     img: '',
   });
+
+  useEffect(() => {
+    const selectedProduct: Product | undefined = MOCK_PRODUCTS.find(
+      (p) => p.id === Number(productId)
+    );
+
+    if (selectedProduct) {
+      setFormData({
+        title: selectedProduct.title,
+        subheading: selectedProduct.subheading || '',
+        categorie: selectedProduct.categorie || '',
+        price: selectedProduct.price,
+        id: selectedProduct.id,
+        description: selectedProduct.description || '',
+        ingredients: selectedProduct.ingredients || [],
+        img: selectedProduct.img || '',
+      });
+    }
+  }, [productId]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -62,13 +85,12 @@ function ProductForm({ onSubmit }: ProductFormProps) {
     e.preventDefault();
     onSubmit(formData);
     // Spara till local storage och rensa formet efter submit
-    // Se till så att produkten kommer upp direkt på sidan
   };
 
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
 
   return (
-    <Box>
+    <Box my="12">
       <form onSubmit={handleSubmit}>
         <Center>
           <Button
@@ -93,7 +115,6 @@ function ProductForm({ onSubmit }: ProductFormProps) {
           <Flex gap="6">
             <Box>
               <Heading mb="4">Product Form</Heading>
-
               <VStack spacing="8">
                 <Flex gap="4">
                   <Box>
@@ -178,17 +199,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
             </Box>
             <Box mt="4">
               <Heading mb="4">Product Preview</Heading>
-              <Box
-                width="15rem"
-                height="20rem"
-                boxShadow="0 4px 8px 0 rgba(0, 0, 0, 0.2)"
-                borderRadius="10px"
-                overflow="hidden"
-                bg="white"
-                position="relative"
-                cursor="pointer"
-                mt="8"
-              >
+              <Box width="15rem" height="20rem">
                 <Image
                   src={formData.img}
                   alt={formData.title}
