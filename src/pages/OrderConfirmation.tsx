@@ -125,7 +125,7 @@ function OrderConfirmation() {
 							</Tr>
 						</Thead>
 						{order.cart.map((cartItems) => (
-							<Tbody>
+							<Tbody key={cartItems.id}>
 								<Tr>
 									<Td fontSize={["sm", "md", "lg"]} mb={["4", "0"]}>
 										<Flex direction="column" align="start">
