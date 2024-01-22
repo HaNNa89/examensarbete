@@ -34,7 +34,6 @@ function AdminForm() {
   return (
     <Center>
       <ProductForm onSubmit={addProduct} />
-      {/* <ProductForm onSubmit={updateProduct} initialData={product} /> */}
     </Center>
   );
 }

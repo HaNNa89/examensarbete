@@ -30,7 +30,9 @@ interface FormData {
   ingredients: string[];
   img: string;
 }
-
+// Se till att den nya produkten är kvar efter rendering
+// det ska gå att ta borten en produkt och redigera en produkt
+// är det värt att göra en Context för allt?
 function ProductForm({ onSubmit }: ProductFormProps) {
   const { productId } = useParams();
 
@@ -96,8 +98,27 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const storedProductsJSON = localStorage.getItem('products');
+    const storedProducts: Product[] = storedProductsJSON
+      ? JSON.parse(storedProductsJSON)
+      : [];
+
+    const updatedProducts = [...storedProducts, formData];
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
+
     onSubmit(formData);
-    // Spara till local storage och rensa formet efter submit
+
+    setFormData({
+      title: '',
+      subheading: '',
+      categorie: '',
+      price: 0,
+      id: 0,
+      description: '',
+      ingredients: [],
+      img: '',
+    });
   };
 
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
