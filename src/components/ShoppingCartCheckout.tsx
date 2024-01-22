@@ -46,6 +46,7 @@ function ShoppingCartCheckout() {
 							>
 								<Flex direction="column">
 									<Text>{product.title}</Text>
+									<Text>{product.subheading}</Text>
 									<Text>{product.price} SEK</Text>
 								</Flex>
 

@@ -147,7 +147,7 @@ function OrderConfirmation() {
 													Quantity: {cartItems.quantity}
 												</Text>
 												<Text fontSize={["sm", "md", "lg"]}>
-													Price: {cartItems.price} SEK
+													Pices: {cartItems.subheading}
 												</Text>
 												<Text fontSize={["sm", "md", "lg"]}>
 													Total: {cartItems.price * cartItems.quantity} SEK
