@@ -40,7 +40,7 @@ const router = createBrowserRouter(
       <Route path="checkout" element={<Checkout />} />
       <Route path="favorites" element={<Favorites />} />
       <Route path="/id/:productName" element={<Detail />} />
-      <Route path="/admin/:productId" element={<AdminForm />} />
+      <Route path="/adminForm/:productId" element={<AdminForm />} />
       <Route path="admin" element={<Admin />} />
       <Route path="orderconfirmation" element={<OrderConfirmation />} />
       <Route path="categories/:category" element={<Home />} />

@@ -19,7 +19,7 @@ function Admin({ product }: AdminProps) {
     <Center>
       <Flex direction="column" align="center" gap="6" m="6">
         <Heading>Admin!</Heading>
-        <Link to={product ? `/admin/${product.id}` : '/'}>
+        <Link to="adminForm/new">
           <Button
             mt={3}
             py={1}

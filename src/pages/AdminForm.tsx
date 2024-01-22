@@ -10,9 +10,19 @@ function AdminForm() {
   };
 
   const { productId } = useParams();
+
+  if (productId === 'new') {
+    return (
+      <Center>
+        <ProductForm onSubmit={addProduct} />
+      </Center>
+    );
+  }
+
   const product: Product | undefined = MOCK_PRODUCTS.find(
     (p) => p.id === Number(productId)
   );
+
   if (!product) {
     return (
       <Center>
@@ -24,6 +34,7 @@ function AdminForm() {
   return (
     <Center>
       <ProductForm onSubmit={addProduct} />
+      {/* <ProductForm onSubmit={updateProduct} initialData={product} /> */}
     </Center>
   );
 }

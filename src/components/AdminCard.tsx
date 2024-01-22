@@ -16,7 +16,7 @@ function AdminCard({ product }: { product: Product }) {
   return (
     <Flex direction="column" width="15rem" m="6">
       <Box width="15rem" height="20rem">
-        <Link to={`/admin/${product.id}`}>
+        <Link to={`/adminForm/${product.id}`}>
           <Image
             src={img}
             alt={title}
@@ -41,14 +41,16 @@ function AdminCard({ product }: { product: Product }) {
               color="white"
               _hover={{ bg: 'none' }}
             />
-            <IconButton
-              icon={<CiEdit />}
-              aria-label="Trashcan"
-              fontSize="1.5rem"
-              bg="none"
-              color="white"
-              _hover={{ bg: 'none' }}
-            />
+            <Link to={`/adminForm/${product.id}`}>
+              <IconButton
+                icon={<CiEdit />}
+                aria-label="Trashcan"
+                fontSize="1.5rem"
+                bg="none"
+                color="white"
+                _hover={{ bg: 'none' }}
+              />
+            </Link>
           </Box>
         </Flex>
       </Flex>

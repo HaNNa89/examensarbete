@@ -46,20 +46,33 @@ function ProductForm({ onSubmit }: ProductFormProps) {
   });
 
   useEffect(() => {
-    const selectedProduct: Product | undefined = MOCK_PRODUCTS.find(
-      (p) => p.id === Number(productId)
-    );
+    if (productId) {
+      const selectedProduct: Product | undefined = MOCK_PRODUCTS.find(
+        (p) => p.id === Number(productId)
+      );
 
-    if (selectedProduct) {
+      if (selectedProduct) {
+        setFormData({
+          title: selectedProduct.title,
+          subheading: selectedProduct.subheading || '',
+          categorie: selectedProduct.categorie || '',
+          price: selectedProduct.price,
+          id: selectedProduct.id,
+          description: selectedProduct.description || '',
+          ingredients: selectedProduct.ingredients || [],
+          img: selectedProduct.img || '',
+        });
+      }
+    } else {
       setFormData({
-        title: selectedProduct.title,
-        subheading: selectedProduct.subheading || '',
-        categorie: selectedProduct.categorie || '',
-        price: selectedProduct.price,
-        id: selectedProduct.id,
-        description: selectedProduct.description || '',
-        ingredients: selectedProduct.ingredients || [],
-        img: selectedProduct.img || '',
+        title: '',
+        subheading: '',
+        categorie: '',
+        price: 0,
+        id: 0,
+        description: '',
+        ingredients: [],
+        img: '',
       });
     }
   }, [productId]);
@@ -92,25 +105,6 @@ function ProductForm({ onSubmit }: ProductFormProps) {
   return (
     <Box my="12">
       <form onSubmit={handleSubmit}>
-        <Center>
-          <Button
-            type="submit"
-            mt={3}
-            py={1}
-            px={6}
-            fontSize={18}
-            border="1px"
-            bgColor="#1A1A1C"
-            textColor="white"
-            _hover={{
-              bg: 'whiteAlpha.200',
-              borderWidth: '2px',
-              boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
-            }}
-          >
-            Add Product
-          </Button>
-        </Center>
         {isLargeScreen ? (
           <Flex gap="6">
             <Box>
@@ -300,6 +294,25 @@ function ProductForm({ onSubmit }: ProductFormProps) {
             </Flex>
           </Flex>
         )}
+        <Center>
+          <Button
+            type="submit"
+            mt={8}
+            py={1}
+            px={6}
+            fontSize={18}
+            border="1px"
+            bgColor="#1A1A1C"
+            textColor="white"
+            _hover={{
+              bg: 'whiteAlpha.200',
+              borderWidth: '2px',
+              boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
+            }}
+          >
+            Add Product
+          </Button>
+        </Center>
       </form>
     </Box>
   );
