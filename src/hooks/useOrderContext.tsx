@@ -57,6 +57,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 			customerData,
 		};
 		setOrder(order);
+		setCartItems([]);
 	};
 
 	const orderValues: OrderContextProps = {

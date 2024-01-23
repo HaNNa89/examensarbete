@@ -24,7 +24,7 @@ interface CartContext {
 	isOpen: boolean;
 	openCart: () => void;
 	closeCart: () => void;
-	clearShoppingCart: () => void;
+	//clearShoppingCart: () => void;
 }
 
 const CartContext = createContext<CartContext>({
@@ -37,7 +37,7 @@ const CartContext = createContext<CartContext>({
 	openCart: () => {},
 	closeCart: () => {},
 	isOpen: false,
-	clearShoppingCart: () => {},
+	//clearShoppingCart: () => {},
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -105,9 +105,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 	const openCart = () => setIsOpen(true);
 	const closeCart = () => setIsOpen(false);
-	const clearShoppingCart = () => {
+	/*const clearShoppingCart = () => {
 		setCartItems([]);
-	};
+	};*/
 
 	const cartValues: CartContext = {
 		cartItems,
@@ -119,7 +119,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		isOpen,
 		openCart,
 		closeCart,
-		clearShoppingCart,
+		//clearShoppingCart,
 	};
 
 	return (
