@@ -5,6 +5,8 @@ import ProductForm from '../components/ProductForm';
 import { useProductContext } from '../hooks/useProductContext';
 
 function AdminForm() {
+  const { products } = useProductContext();
+  const allProducts = [...MOCK_PRODUCTS, ...products];
   const { addProduct, updateProduct } = useProductContext();
   const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ function AdminForm() {
     );
   }
 
-  const product: Product | undefined = MOCK_PRODUCTS.find(
+  const product: Product | undefined = allProducts.find(
     (p) => p.id === Number(productId)
   );
 

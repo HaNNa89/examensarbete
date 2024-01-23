@@ -12,13 +12,16 @@ import { useState } from 'react';
 import { MOCK_PRODUCTS } from '../../data/mock';
 import ProductCard from '../components/ProductCard';
 import ProductCategories from '../components/ProductCategories';
+import { useProductContext } from '../hooks/useProductContext';
 
 function Home() {
+  const { products } = useProductContext();
+  const allProducts = [...MOCK_PRODUCTS, ...products];
   const [currentCategory, setCurrentCategory] = useState<string | null>(null);
 
   const filteredProducts = currentCategory
-    ? MOCK_PRODUCTS.filter((product) => product.categorie === currentCategory)
-    : MOCK_PRODUCTS;
+    ? allProducts.filter((product) => product.categorie === currentCategory)
+    : allProducts;
   return (
     <>
       <Flex
