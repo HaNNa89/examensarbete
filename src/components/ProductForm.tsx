@@ -18,6 +18,7 @@ import { MOCK_PRODUCTS, Product } from '../../data/mock';
 
 interface ProductFormProps {
   onSubmit: (formData: FormData) => void;
+  initialData?: Product;
 }
 
 interface FormData {
@@ -32,7 +33,6 @@ interface FormData {
 }
 // Se till att den nya produkten är kvar efter rendering
 // det ska gå att ta borten en produkt och redigera en produkt
-// är det värt att göra en Context för allt?
 function ProductForm({ onSubmit }: ProductFormProps) {
   const { productId } = useParams();
 
@@ -88,6 +88,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(`name: ${name}, value: ${value}`);
     setFormData({ ...formData, [name]: parseFloat(value) });
   };
 

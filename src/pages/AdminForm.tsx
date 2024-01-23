@@ -1,13 +1,12 @@
 import { Center, Text } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MOCK_PRODUCTS, Product } from '../../data/mock';
 import ProductForm from '../components/ProductForm';
+import { useProductContext } from '../hooks/useProductContext';
 
 function AdminForm() {
-  const addProduct = (newProduct: Product) => {
-    MOCK_PRODUCTS.push(newProduct);
-    console.log('Product added:', newProduct);
-  };
+  const { addProduct, updateProduct } = useProductContext();
+  const navigate = useNavigate();
 
   const { productId } = useParams();
 
@@ -31,10 +30,17 @@ function AdminForm() {
     );
   }
 
+  const handleUpdateProduct = (updatedProduct: Product) => {
+    updateProduct(updatedProduct);
+    console.log('Product updated:', updatedProduct);
+    navigate('/admin');
+  };
+
   return (
     <Center>
-      <ProductForm onSubmit={addProduct} />
+      <ProductForm onSubmit={handleUpdateProduct} initialData={product} />
     </Center>
   );
 }
+
 export default AdminForm;

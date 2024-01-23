@@ -1,21 +1,22 @@
-import { Button, Center, Flex, Grid, Heading, Text } from '@chakra-ui/react';
+import { Button, Center, Flex, Grid, Heading } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { MOCK_PRODUCTS, Product } from '../../data/mock';
+import { MOCK_PRODUCTS } from '../../data/mock';
 import AdminCard from '../components/AdminCard';
+import { useProductContext } from '../hooks/useProductContext';
 
-interface AdminProps {
-  product?: Product;
-}
-
-function Admin({ product }: AdminProps) {
+function Admin() {
   const navigate = useNavigate();
-  if (!product && MOCK_PRODUCTS.length === 0) {
+  const { products } = useProductContext();
+
+  if (products.length === 0 && MOCK_PRODUCTS.length === 0) {
     return (
       <Center>
-        <Text>No products found!</Text>
+        <Heading>No products found!</Heading>
       </Center>
     );
   }
+
+  const allProducts = [...MOCK_PRODUCTS, ...products];
 
   const handleAddProductClick = () => {
     navigate('/adminForm/new');
@@ -42,21 +43,19 @@ function Admin({ product }: AdminProps) {
         >
           Add Product
         </Button>
-        <Center>
-          <Grid
-            templateColumns={{
-              base: 'repeat(1, 1fr)',
-              md: 'repeat(2, 1fr)',
-              lg: 'repeat(4, 1fr)',
-            }}
-            gap={6}
-            justifyContent="center"
-          >
-            {MOCK_PRODUCTS.map((product) => (
-              <AdminCard key={product.id} product={product} />
-            ))}
-          </Grid>
-        </Center>
+        <Grid
+          templateColumns={{
+            base: 'repeat(1, 1fr)',
+            md: 'repeat(2, 1fr)',
+            lg: 'repeat(4, 1fr)',
+          }}
+          gap={6}
+          justifyContent="center"
+        >
+          {allProducts.map((product) => (
+            <AdminCard key={product.id} product={product} />
+          ))}
+        </Grid>
       </Flex>
     </Center>
   );
