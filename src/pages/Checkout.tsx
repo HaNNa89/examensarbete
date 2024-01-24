@@ -6,11 +6,15 @@ import { useOrder } from "../hooks/useOrderContext";
 
 function Checkout() {
 	const { order, handleOrderSubmit } = useOrder();
+	//const { clearShoppingCart } = useCart();
+
 	console.log("Order:", order);
 	const navigate = useNavigate();
 
 	const handleSubmit = (values: Customer) => {
+		console.log("Handle submit called with values:", values);
 		handleOrderSubmit(values);
+		//clearShoppingCart();
 		navigate("/orderconfirmation");
 	};
 
