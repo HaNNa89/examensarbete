@@ -13,7 +13,7 @@ import {
   Text,
   UnorderedList,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import { useParams } from 'react-router-dom';
@@ -68,6 +68,10 @@ function Detail() {
   const handleAddToCartClick = () => {
     addToCart(product);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const isProductLiked = favoriteProducts.some(
     (favProduct) => favProduct.title === product.title
