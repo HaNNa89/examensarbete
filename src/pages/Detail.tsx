@@ -15,9 +15,14 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
 import { useParams } from 'react-router-dom';
 import { MOCK_PRODUCTS } from '../../data/mock';
 import { useCart } from '../hooks/useCartContext';
+import {
+  useFavoritesContext,
+  useToggleFavorite,
+} from '../hooks/useFavoritesContext';
 import { useProductContext } from '../hooks/useProductContext';
 
 interface DetailProduct {
@@ -35,6 +40,9 @@ function Detail() {
   const { productName } = useParams();
   const { products } = useProductContext();
   const allProducts = [...products, ...MOCK_PRODUCTS];
+
+  const { favoriteProducts } = useFavoritesContext();
+  const toggleProductFavorite = useToggleFavorite();
 
   const product: DetailProduct | undefined = allProducts.find(
     (p) => p.title === productName
@@ -59,6 +67,24 @@ function Detail() {
 
   const handleAddToCartClick = () => {
     addToCart(product);
+  };
+
+  const isProductLiked = favoriteProducts.some(
+    (favProduct) => favProduct.title === product.title
+  );
+
+  const handleToggleLike = () => {
+    const isLiked = favoriteProducts.some(
+      (favProduct) => favProduct.title === product.title
+    );
+
+    toggleProductFavorite({
+      title: product.title,
+      img: product.img,
+      price: product.price,
+      isLiked,
+      id: product.id,
+    });
   };
 
   return (
@@ -114,6 +140,15 @@ function Detail() {
               >
                 Order
               </Box>
+              <IconButton
+                icon={isProductLiked ? <GoHeartFill /> : <GoHeart />}
+                aria-label={isProductLiked ? 'Unlike' : 'Like'}
+                fontSize="1.5rem"
+                bg="none"
+                color="white"
+                _hover={{ bg: 'none' }}
+                onClick={handleToggleLike}
+              />
 
               <Flex direction="column" mt={14}>
                 <Flex align="center">
