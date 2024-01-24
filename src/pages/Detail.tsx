@@ -41,6 +41,10 @@ function Detail() {
   const { products } = useProductContext();
   const allProducts = [...products, ...MOCK_PRODUCTS];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { favoriteProducts } = useFavoritesContext();
   const toggleProductFavorite = useToggleFavorite();
 
@@ -68,10 +72,6 @@ function Detail() {
   const handleAddToCartClick = () => {
     addToCart(product);
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const isProductLiked = favoriteProducts.some(
     (favProduct) => favProduct.title === product.title
