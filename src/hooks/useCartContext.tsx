@@ -50,6 +50,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		"cartItems",
 		[]
 	);
+	console.log(
+		"Local Storage before saving:",
+		localStorage.getItem("cartItems")
+	);
 	const [isOpen, setIsOpen] = useState(false);
 
 	const addToCart = (product: Product) => {
@@ -61,6 +65,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 			);
 			setCartItems(updatedCart);
 			openCart();
+			console.log("Product added to cart:", product);
+			console.log("Updated Cart:", updatedCart);
 		} else {
 			setCartItems([
 				...cartItems,

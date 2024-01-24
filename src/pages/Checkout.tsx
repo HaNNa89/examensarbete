@@ -12,6 +12,7 @@ function Checkout() {
 	const navigate = useNavigate();
 
 	const handleSubmit = (values: Customer) => {
+		console.log("Handle submit called with values:", values);
 		handleOrderSubmit(values);
 		//clearShoppingCart();
 		navigate("/orderconfirmation");

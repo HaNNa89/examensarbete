@@ -42,6 +42,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
 	const handleOrderSubmit = (customerData: Customer) => {
 		console.log("Handle Order Submit Called");
+		console.log("Cart Items in handleOrderSubmit:", cartItems);
 		const orderId = Date.now().toString();
 		const orderDate = new Date().toLocaleDateString();
 		const totalPrice = cartItems.reduce(
@@ -57,7 +58,9 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 			customerData,
 		};
 		setOrder(order);
+		console.log("Cart Items before clearing:", cartItems);
 		setCartItems([]);
+		console.log("Cart Items after clearing in handleOrderSubmit:", cartItems);
 	};
 
 	const orderValues: OrderContextProps = {
