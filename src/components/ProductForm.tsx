@@ -13,7 +13,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { MOCK_PRODUCTS, Product } from '../../data/mock';
 import { useProductContext } from '../hooks/useProductContext';
 
@@ -319,23 +319,25 @@ function ProductForm({ onSubmit }: ProductFormProps) {
           </Flex>
         )}
         <Center>
-          <Button
-            type="submit"
-            mt={8}
-            py={1}
-            px={6}
-            fontSize={18}
-            border="1px"
-            bgColor="#1A1A1C"
-            textColor="white"
-            _hover={{
-              bg: 'whiteAlpha.200',
-              borderWidth: '2px',
-              boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
-            }}
-          >
-            Add Product
-          </Button>
+          <Link to="/admin">
+            <Button
+              type="submit"
+              mt={8}
+              py={1}
+              px={6}
+              fontSize={18}
+              border="1px"
+              bgColor="#1A1A1C"
+              textColor="white"
+              _hover={{
+                bg: 'whiteAlpha.200',
+                borderWidth: '2px',
+                boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
+              }}
+            >
+              Add Product
+            </Button>
+          </Link>
         </Center>
       </form>
     </Box>

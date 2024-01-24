@@ -34,7 +34,6 @@ function AdminForm() {
 
   const handleUpdateProduct = (updatedProduct: Product) => {
     updateProduct(updatedProduct);
-    console.log('Product updated:', updatedProduct);
     navigate('/admin');
   };
 
