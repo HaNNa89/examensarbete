@@ -1,4 +1,5 @@
 import { Center, Divider, Heading } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomerForm, { Customer } from "../components/CustomerForm";
 import ShoppingCartCheckout from "../components/ShoppingCartCheckout";
@@ -17,6 +18,10 @@ function Checkout() {
 		//clearShoppingCart();
 		navigate("/orderconfirmation");
 	};
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<Center flexDir="column">
