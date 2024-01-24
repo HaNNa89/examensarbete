@@ -21,6 +21,7 @@ import { useCart } from '../hooks/useCartContext';
 function ShoppingCart() {
   const navigate = useNavigate();
   const handleNavigateToCheckout = () => {
+    console.log('handleNavigateToCheckout called');
     closeCart();
     navigate('/checkout');
   };
