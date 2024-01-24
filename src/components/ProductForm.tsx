@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Product } from '../../data/mock';
+import { MOCK_PRODUCTS, Product } from '../../data/mock';
 import { useProductContext } from '../hooks/useProductContext';
 
 interface ProductFormProps {
@@ -32,8 +32,7 @@ interface FormData {
   ingredients: string[];
   img: string;
 }
-// Se till att den nya produkten är kvar efter rendering
-// det ska gå att ta borten en produkt och redigera en produkt
+
 function ProductForm({ onSubmit }: ProductFormProps) {
   const { productId } = useParams();
   const { products } = useProductContext();
@@ -50,7 +49,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
   });
 
   useEffect(() => {
-    const allProducts = [...products];
+    const allProducts = [...products, ...MOCK_PRODUCTS];
     if (productId) {
       const selectedProduct: Product | undefined = allProducts.find(
         (p) => p.id === Number(productId)

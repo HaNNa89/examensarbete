@@ -16,6 +16,7 @@ import {
 import { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import { MOCK_PRODUCTS } from '../../data/mock';
 import { useCart } from '../hooks/useCartContext';
 import { useProductContext } from '../hooks/useProductContext';
 
@@ -33,7 +34,7 @@ interface DetailProduct {
 function Detail() {
   const { productName } = useParams();
   const { products } = useProductContext();
-  const allProducts = [...products];
+  const allProducts = [...products, ...MOCK_PRODUCTS];
 
   const product: DetailProduct | undefined = allProducts.find(
     (p) => p.title === productName

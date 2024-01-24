@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, IconButton, Image, Text } from '@chakra-ui/react';
 import { CiEdit, CiTrash } from 'react-icons/ci';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Product {
   img: string;
@@ -12,19 +12,23 @@ interface Product {
 
 function AdminCard({ product }: { product: Product }) {
   const { img, title, price } = product;
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/adminForm/${product.id}`);
+  };
 
   return (
     <Flex direction="column" width="15rem" m="6">
       <Box width="15rem" height="20rem">
-        <Link to={`/adminForm/${product.id}`}>
-          <Image
-            src={img}
-            alt={title}
-            objectFit="cover"
-            width="100%"
-            height="100%"
-          />
-        </Link>
+        <Image
+          src={img}
+          alt={title}
+          objectFit="cover"
+          width="100%"
+          height="100%"
+          onClick={handleNavigate}
+        />
       </Box>
       <Flex direction="column" height="6rem" m="1" justify="space-between">
         <Flex justify="space-between" align="center">
