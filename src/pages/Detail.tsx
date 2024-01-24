@@ -18,6 +18,7 @@ import { FaChevronDown } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { MOCK_PRODUCTS } from '../../data/mock';
 import { useCart } from '../hooks/useCartContext';
+import { useProductContext } from '../hooks/useProductContext';
 
 interface DetailProduct {
   img: string;
@@ -29,9 +30,13 @@ interface DetailProduct {
   description: string;
   ingredients: string[];
 }
+
 function Detail() {
   const { productName } = useParams();
-  const product: DetailProduct | undefined = MOCK_PRODUCTS.find(
+  const { products } = useProductContext();
+  const allProducts = [...products, ...MOCK_PRODUCTS];
+
+  const product: DetailProduct | undefined = allProducts.find(
     (p) => p.title === productName
   );
 
@@ -45,7 +50,6 @@ function Detail() {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { addToCart } = useCart();
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [isOpen, setIsOpen] = useState(false);
 

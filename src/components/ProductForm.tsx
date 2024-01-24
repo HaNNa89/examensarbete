@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Flex,
   FormControl,
   FormLabel,
@@ -11,10 +12,14 @@ import {
   useBreakpointValue,
   VStack,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { MOCK_PRODUCTS, Product } from '../../data/mock';
+import { useProductContext } from '../hooks/useProductContext';
 
 interface ProductFormProps {
   onSubmit: (formData: FormData) => void;
+  initialData?: Product;
 }
 
 interface FormData {
@@ -29,6 +34,9 @@ interface FormData {
 }
 
 function ProductForm({ onSubmit }: ProductFormProps) {
+  const { productId } = useParams();
+  const { products } = useProductContext();
+
   const [formData, setFormData] = useState<FormData>({
     title: '',
     subheading: '',
@@ -40,6 +48,39 @@ function ProductForm({ onSubmit }: ProductFormProps) {
     img: '',
   });
 
+  useEffect(() => {
+    const allProducts = [...products, ...MOCK_PRODUCTS];
+    if (productId) {
+      const selectedProduct: Product | undefined = allProducts.find(
+        (p) => p.id === Number(productId)
+      );
+
+      if (selectedProduct) {
+        setFormData({
+          title: selectedProduct.title,
+          subheading: selectedProduct.subheading || '',
+          categorie: selectedProduct.categorie || '',
+          price: selectedProduct.price,
+          id: selectedProduct.id,
+          description: selectedProduct.description || '',
+          ingredients: selectedProduct.ingredients || [],
+          img: selectedProduct.img || '',
+        });
+      }
+    } else {
+      setFormData({
+        title: '',
+        subheading: '',
+        categorie: '',
+        price: 0,
+        id: 0,
+        description: '',
+        ingredients: [],
+        img: '',
+      });
+    }
+  }, [products, productId]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -49,6 +90,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(`name: ${name}, value: ${value}`);
     setFormData({ ...formData, [name]: parseFloat(value) });
   };
 
@@ -59,19 +101,38 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const storedProductsJSON = localStorage.getItem('products');
+    const storedProducts: Product[] = storedProductsJSON
+      ? JSON.parse(storedProductsJSON)
+      : [];
+
+    const updatedProducts = [...storedProducts, formData];
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
+
     onSubmit(formData);
-    // Spara till local storage och rensa formet efter submit
+
+    setFormData({
+      title: '',
+      subheading: '',
+      categorie: '',
+      price: 0,
+      id: 0,
+      description: '',
+      ingredients: [],
+      img: '',
+    });
   };
 
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
 
   return (
-    <Flex>
-      {isLargeScreen ? (
-        <Flex gap="6">
-          <Box>
-            <Heading mb="4">Product Form</Heading>
-            <form onSubmit={handleSubmit}>
+    <Box my="12">
+      <form onSubmit={handleSubmit}>
+        {isLargeScreen ? (
+          <Flex gap="6">
+            <Box>
+              <Heading mb="4">Product Form</Heading>
               <VStack spacing="8">
                 <Flex gap="4">
                   <Box>
@@ -153,37 +214,22 @@ function ProductForm({ onSubmit }: ProductFormProps) {
                   </Box>
                 </Flex>
               </VStack>
-              <Button type="submit" mt="3">
-                Add Product
-              </Button>
-            </form>
-          </Box>
-          <Box mt="4">
-            <Heading mb="4">Product Preview</Heading>
-            <Box
-              width="15rem"
-              height="20rem"
-              boxShadow="0 4px 8px 0 rgba(0, 0, 0, 0.2)"
-              borderRadius="10px"
-              overflow="hidden"
-              bg="white"
-              position="relative"
-              cursor="pointer"
-              mt="8"
-            >
-              <Image
-                src={formData.img}
-                alt={formData.title}
-                objectFit="cover"
-                width="100%"
-                height="100%"
-              />
             </Box>
-          </Box>
-        </Flex>
-      ) : (
-        <Flex direction="column">
-          <form onSubmit={handleSubmit}>
+            <Box mt="4">
+              <Heading mb="4">Product Preview</Heading>
+              <Box width="15rem" height="20rem">
+                <Image
+                  src={formData.img}
+                  alt={formData.title}
+                  objectFit="cover"
+                  width="100%"
+                  height="100%"
+                />
+              </Box>
+            </Box>
+          </Flex>
+        ) : (
+          <Flex direction="column">
             <VStack spacing="8">
               <FormControl>
                 <FormLabel mt="1">Title</FormLabel>
@@ -258,24 +304,43 @@ function ProductForm({ onSubmit }: ProductFormProps) {
                 />
               </FormControl>
             </VStack>
-            <Button type="submit" mt="3">
+
+            <Flex mt="6" width="15rem">
+              <Box width="15rem" height="20rem">
+                <Image
+                  src={formData.img}
+                  alt={formData.title}
+                  objectFit="cover"
+                  width="100%"
+                  height="100%"
+                />
+              </Box>
+            </Flex>
+          </Flex>
+        )}
+        <Center>
+          <Link to="/admin">
+            <Button
+              type="submit"
+              mt={8}
+              py={1}
+              px={6}
+              fontSize={18}
+              border="1px"
+              bgColor="#1A1A1C"
+              textColor="white"
+              _hover={{
+                bg: 'whiteAlpha.200',
+                borderWidth: '2px',
+                boxShadow: '0 4px 8px rgba(255, 255, 255, 0.3)',
+              }}
+            >
               Add Product
             </Button>
-          </form>
-          <Flex mt="6" width="15rem">
-            <Box width="15rem" height="20rem">
-              <Image
-                src={formData.img}
-                alt={formData.title}
-                objectFit="cover"
-                width="100%"
-                height="100%"
-              />
-            </Box>
-          </Flex>
-        </Flex>
-      )}
-    </Flex>
+          </Link>
+        </Center>
+      </form>
+    </Box>
   );
 }
 
