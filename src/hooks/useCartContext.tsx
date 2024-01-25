@@ -24,7 +24,7 @@ interface CartContext {
 	isOpen: boolean;
 	openCart: () => void;
 	closeCart: () => void;
-	//clearShoppingCart: () => void;
+	clearShoppingCart: () => void;
 }
 
 const CartContext = createContext<CartContext>({
@@ -37,7 +37,7 @@ const CartContext = createContext<CartContext>({
 	openCart: () => {},
 	closeCart: () => {},
 	isOpen: false,
-	//clearShoppingCart: () => {},
+	clearShoppingCart: () => {},
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -50,10 +50,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		"cartItems",
 		[]
 	);
-	console.log(
-		"Local Storage before saving:",
-		localStorage.getItem("cartItems")
-	);
+	// console.log(
+	// 	"Local Storage before saving:",
+	// 	localStorage.getItem("cartItems")
+	// );
 	const [isOpen, setIsOpen] = useState(false);
 
 	const addToCart = (product: Product) => {
@@ -64,9 +64,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 				item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
 			);
 			setCartItems(updatedCart);
+			// console.log("Cart updated:", updatedCart);
+			// console.log("Product added to cart:", product);
+
 			openCart();
-			console.log("Product added to cart:", product);
-			console.log("Updated Cart:", updatedCart);
 		} else {
 			setCartItems([
 				...cartItems,
@@ -78,6 +79,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 					img: product.img,
 				},
 			]);
+			// console.log("Product added to cart:", product);
 		}
 	};
 
@@ -111,9 +113,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 	const openCart = () => setIsOpen(true);
 	const closeCart = () => setIsOpen(false);
-	/*const clearShoppingCart = () => {
+	const clearShoppingCart = () => {
 		setCartItems([]);
-	};*/
+	};
 
 	const cartValues: CartContext = {
 		cartItems,
@@ -125,7 +127,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		isOpen,
 		openCart,
 		closeCart,
-		//clearShoppingCart,
+		clearShoppingCart,
 	};
 
 	return (

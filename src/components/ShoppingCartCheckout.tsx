@@ -19,6 +19,8 @@ function ShoppingCartCheckout() {
 		removeFromCart,
 	} = useCart();
 
+	console.log("ShoppingCartCheckout cartItems hej syns jag:", cartItems);
+
 	return (
 		<Flex direction="column" w="70%" align="stretch" py={4}>
 			{cartItems.length > 0 ? (
