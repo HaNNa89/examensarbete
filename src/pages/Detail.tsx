@@ -29,7 +29,7 @@ interface DetailProduct {
 	img: string;
 	title: string;
 	subheading: string;
-	categorie: string;
+	category: string;
 	price: number;
 	id: number;
 	description: string;
@@ -55,7 +55,7 @@ function Detail() {
 	if (!product) {
 		return (
 			<Center>
-				<Text>Product not found!</Text>;
+				<Text>Product not found</Text>;
 			</Center>
 		);
 	}

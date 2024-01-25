@@ -3,7 +3,7 @@ import React, { ReactNode, createContext, useContext, useReducer } from "react";
 interface Product {
 	title: string;
 	subheading: string;
-	categorie: string;
+	category: string;
 	price: number;
 	id: number;
 	description: string;

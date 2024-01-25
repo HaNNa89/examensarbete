@@ -26,7 +26,7 @@ interface ProductFormProps {
 interface FormData {
 	title: string;
 	subheading: string;
-	categorie: string;
+	category: string;
 	price: number;
 	id: number;
 	description: string;
@@ -42,7 +42,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 	const [formData, setFormData] = useState<FormData>({
 		title: "",
 		subheading: "",
-		categorie: "",
+		category: "",
 		price: 0,
 		id: 0,
 		description: "",
@@ -61,7 +61,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 				setFormData({
 					title: selectedProduct.title,
 					subheading: selectedProduct.subheading || "",
-					categorie: selectedProduct.categorie || "",
+					category: selectedProduct.category || "",
 					price: selectedProduct.price,
 					id: selectedProduct.id,
 					description: selectedProduct.description || "",
@@ -73,7 +73,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 			setFormData({
 				title: "",
 				subheading: "",
-				categorie: "",
+				category: "",
 				price: 0,
 				id: 0,
 				description: "",
@@ -124,7 +124,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 		setFormData({
 			title: "",
 			subheading: "",
-			categorie: "",
+			category: "",
 			price: 0,
 			id: 0,
 			description: "",
@@ -167,8 +167,8 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 											<FormLabel mt="1">Category</FormLabel>
 											<Input
 												type="text"
-												name="categorie"
-												value={formData.categorie}
+												name="category"
+												value={formData.category}
 												onChange={handleChange}
 											/>
 										</FormControl>
@@ -263,8 +263,8 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 								<FormLabel mt="1">Category</FormLabel>
 								<Input
 									type="text"
-									name="categorie"
-									value={formData.categorie}
+									name="category"
+									value={formData.category}
 									onChange={handleChange}
 								/>
 							</FormControl>

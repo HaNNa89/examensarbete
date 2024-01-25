@@ -20,7 +20,7 @@ function Home() {
 	const [currentCategory, setCurrentCategory] = useState<string | null>(null);
 
 	const filteredProducts = currentCategory
-		? allProducts.filter((product) => product.categorie === currentCategory)
+		? allProducts.filter((product) => product.category === currentCategory)
 		: allProducts;
 
 	return (
