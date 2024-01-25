@@ -11,12 +11,10 @@ function Checkout() {
 	const { cartItems } = useCart();
 	console.log("Checkout cartItems:", cartItems);
 	console.log("Order:", order);
+
 	const navigate = useNavigate();
-
 	const handleSubmit = (values: Customer) => {
-		console.log("Handle submit called with values:", values);
 		handleOrderSubmit(values);
-
 		navigate("/orderconfirmation");
 	};
 

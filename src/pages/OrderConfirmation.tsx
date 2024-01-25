@@ -21,8 +21,6 @@ import { useOrder } from "../hooks/useOrderContext";
 function OrderConfirmation() {
 	const isLargeScreen = useBreakpointValue({ base: false, md: true });
 	const { order } = useOrder();
-	console.log("Hej Order in OrderConfirmation:", order);
-
 	const navigate = useNavigate();
 
 	if (!order) {
