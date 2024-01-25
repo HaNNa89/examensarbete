@@ -14,7 +14,7 @@ import { MOCK_PRODUCTS } from "../../data/mock";
 
 interface ProductItems {
 	title: string;
-	categorie: string;
+	category: string;
 	img: string;
 }
 
