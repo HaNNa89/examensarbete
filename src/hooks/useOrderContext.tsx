@@ -63,6 +63,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
 		setConfirmedOrderItems(cartItems);
 		clearShoppingCart();
+		console.log("Cart Items after clearing:", confirmedOrderItems);
 	};
 
 	const orderValues: OrderContextProps = {

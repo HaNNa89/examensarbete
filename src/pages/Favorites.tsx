@@ -1,4 +1,4 @@
-import { Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import { Center, Flex, Grid, Heading, Text } from "@chakra-ui/react";
 import { MOCK_PRODUCTS, Product } from "../../data/mock";
 import ProductCard from "../components/ProductCard";
 
@@ -23,9 +23,11 @@ function Favorites() {
 
 	return (
 		<Flex direction="column" alignItems="center">
-			<Heading m="8">Favorites!</Heading>
+			<Heading m="8">Favorites</Heading>
 			{favoriteProducts.length === 0 ? (
-				<Text>No favorites added</Text>
+				<Center>
+					<Text fontSize={20}>No favorites added</Text>
+				</Center>
 			) : (
 				<Flex flexWrap="wrap" justifyContent="center">
 					<Grid

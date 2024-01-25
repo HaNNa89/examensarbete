@@ -134,7 +134,7 @@ function ShoppingCart() {
 											}}
 											onClick={closeCart}
 										>
-											Start Your Order!
+											Create new Order!
 										</Box>
 									</Link>
 								</Flex>

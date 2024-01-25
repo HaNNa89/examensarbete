@@ -56,7 +56,7 @@ function Home() {
 						}}
 						mt={2}
 					>
-						Breakfast, Brunch & Everything You Need
+						Breakfast, Lunch & Everything You Need
 					</Text>
 					<Divider width="200px" mt={8} color="white" />
 				</Flex>

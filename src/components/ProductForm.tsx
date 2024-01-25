@@ -114,8 +114,8 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 
 		onSubmit(formData);
 		toast({
-			title: "Produkt tillagd",
-			description: "Din produkt har lagts till framgångsrikt.",
+			title: "Product added",
+			description: "Your product has been added successfully.",
 			status: "success",
 			duration: 5000,
 			isClosable: true,
@@ -239,6 +239,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 					</Flex>
 				) : (
 					<Flex direction="column">
+						<Heading mb="2">Product Form</Heading>
 						<VStack spacing="8">
 							<FormControl>
 								<FormLabel mt="1">Title</FormLabel>
@@ -313,7 +314,7 @@ function ProductForm({ onSubmit }: ProductFormProps) {
 								/>
 							</FormControl>
 						</VStack>
-
+						<Heading mt="4">Product Preview</Heading>
 						<Flex mt="6" width="15rem">
 							<Box width="15rem" height="20rem">
 								<Image

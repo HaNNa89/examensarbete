@@ -122,7 +122,7 @@ function ShoppingCartCheckout() {
 								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
 							}}
 						>
-							Start Your Order!
+							Create new Order!
 						</Box>
 					</Link>
 				</Flex>

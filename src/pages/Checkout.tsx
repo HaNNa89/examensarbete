@@ -24,11 +24,12 @@ function Checkout() {
 
 	return (
 		<Center flexDir="column">
-			<Heading m="8">Checkout</Heading>
+			<Heading as="h1" mt="4" mb="10">
+				Checkout
+			</Heading>
 			<Divider w={["20rem", "35rem", "49rem"]} />
 			<ShoppingCartCheckout />
 			<CustomerForm onSubmit={handleSubmit} />
-			<Divider w={["20rem", "35rem", "49rem"]} />
 		</Center>
 	);
 }
