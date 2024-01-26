@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# Café O'Neil
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hanna Petersson och Tara Skoglund, klass (FED22G)
+_Examensarbete vid Medieinstitutet under perioden 18 december 2023 - 26 januari 2024._
 
-Currently, two official plugins are available:
+Projektet syfte är att skapa en användarvänlig webbshop för Café O'Neil, där kunder enkelt kan beställa frukost, lunch och bakverk. Genom att använda moderna teknologier som React och Chakra UI strävade vi efter att skapa en sömlös och effektiv användarupplevelse. Utmaningar som uppstod hanterades genom att implementera lösningar som ProductProvider och Reacts context API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Fokus låg på omfattande kodning, djup förståelse för teknologier, effektiv projektplanering och tydlig kommunikation. Planer för framtida utveckling inkluderar integration av databas, inloggning/registreringsfunktioner, förbättrad produkt hantering och införande av ett säkert betalningssystem.
 
-## Expanding the ESLint configuration
+Café Webbshop-projektet stärkte inte bara tekniska färdigheter utan betonade även vikten av strukturerad projektplanering och proaktiv kommunikation för framgångsrik utveckling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+För att komma igång med projektet behöver du göra dessa kommando i terminalen.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Om du inte redan har nedanstående tillägg behöver du även installera dessa.
+
+```
+npm install react-icons
+npm install yup
+npm install formik
+npm install Chakra-ui
+npm install react-router-dom
+```
+
+## Demo
+
+Öppna en demolänk på [Netlify](https://cosmic-lokum-6120e0.netlify.app/).
