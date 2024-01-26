@@ -21,17 +21,19 @@ import { useOrder } from "../hooks/useOrderContext";
 function OrderConfirmation() {
 	const isLargeScreen = useBreakpointValue({ base: false, md: true });
 	const { order } = useOrder();
-	console.log("Hej Order in OrderConfirmation:", order);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	const navigate = useNavigate();
 
 	if (!order) {
-		return <Text>no order available</Text>;
+		return (
+			<Center>
+				<Text fontSize={20}>No order available</Text>;
+			</Center>
+		);
 	}
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
 
 	const handleBackToStart = () => {
 		navigate("/");
@@ -66,21 +68,21 @@ function OrderConfirmation() {
 							Contact Information
 						</Heading>
 						<Flex fontSize={{ base: "16", sm: "18", md: "20" }} gap={2}>
-							<Text>{order.customerData.firstName}</Text>
+							<Text>Name: {order.customerData.firstName}</Text>
 							<Text>{order.customerData.lastName}</Text>
 						</Flex>
 						<Text fontSize={{ base: "16", sm: "18", md: "20" }}>
-							{order.customerData.phone}
+							Phone number: {order.customerData.phone}
 						</Text>
 						<Text fontSize={{ base: "16", sm: "18", md: "20" }}>
-							{order.customerData.email}
+							Email: {order.customerData.email}
 						</Text>
 						<Text fontSize={{ base: "16", sm: "18", md: "20" }}>
-							{order.customerData.address}
+							Address: {order.customerData.address}
 						</Text>
 						<Flex fontSize={{ base: "16", sm: "18", md: "20" }} gap={2} mb={6}>
-							<Text>{order.customerData.zipcode}</Text>
-							<Text>{order.customerData.city}</Text>
+							<Text>Zipcode: {order.customerData.zipcode}</Text>
+							<Text>City: {order.customerData.city}</Text>
 						</Flex>
 					</Flex>
 					<Flex overflowX="auto" mt={10}>
@@ -200,7 +202,7 @@ function OrderConfirmation() {
 							}}
 							onClick={handleBackToStart}
 						>
-							Looking for more? Start new order.
+							Still hungry? Create new order!
 						</Box>
 					</Center>
 				</>

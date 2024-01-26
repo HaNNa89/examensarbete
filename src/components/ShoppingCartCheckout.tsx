@@ -19,8 +19,6 @@ function ShoppingCartCheckout() {
 		removeFromCart,
 	} = useCart();
 
-	console.log("ShoppingCartCheckout cartItems hej syns jag:", cartItems);
-
 	return (
 		<Flex direction="column" w="70%" align="stretch" py={4}>
 			{cartItems.length > 0 ? (
@@ -124,7 +122,7 @@ function ShoppingCartCheckout() {
 								boxShadow: "0 4px 8px rgba(255, 255, 255, 0.3)",
 							}}
 						>
-							Start Your Order!
+							Create new Order!
 						</Box>
 					</Link>
 				</Flex>

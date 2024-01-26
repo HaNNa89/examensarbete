@@ -11,12 +11,10 @@ function Checkout() {
 	const { cartItems } = useCart();
 	console.log("Checkout cartItems:", cartItems);
 	console.log("Order:", order);
+
 	const navigate = useNavigate();
-
 	const handleSubmit = (values: Customer) => {
-		console.log("Handle submit called with values:", values);
 		handleOrderSubmit(values);
-
 		navigate("/orderconfirmation");
 	};
 
@@ -26,11 +24,12 @@ function Checkout() {
 
 	return (
 		<Center flexDir="column">
-			<Heading m="8">Checkout</Heading>
+			<Heading as="h1" mt="4" mb="10">
+				Checkout
+			</Heading>
 			<Divider w={["20rem", "35rem", "49rem"]} />
 			<ShoppingCartCheckout />
 			<CustomerForm onSubmit={handleSubmit} />
-			<Divider w={["20rem", "35rem", "49rem"]} />
 		</Center>
 	);
 }

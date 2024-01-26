@@ -50,12 +50,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 		"cartItems",
 		[]
 	);
-	// console.log(
-	// 	"Local Storage before saving:",
-	// 	localStorage.getItem("cartItems")
-	// );
-	const [isOpen, setIsOpen] = useState(false);
 
+	const [isOpen, setIsOpen] = useState(false);
 	const addToCart = (product: Product) => {
 		const existingItem = cartItems.find((item) => item.id === product.id);
 		openCart();
@@ -64,9 +60,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 				item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
 			);
 			setCartItems(updatedCart);
-			// console.log("Cart updated:", updatedCart);
-			// console.log("Product added to cart:", product);
-
 			openCart();
 		} else {
 			setCartItems([
@@ -79,7 +72,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 					img: product.img,
 				},
 			]);
-			// console.log("Product added to cart:", product);
 		}
 	};
 

@@ -27,10 +27,6 @@ interface OrderContextProps {
 	handleOrderSubmit: (customerData: Customer) => void;
 }
 
-//TODO:
-//Kunna logga ut cartItems i kontexten, för att se att de faktiskt hämtas korrekt från local storage
-//cartItems visas endast efter refresh, varför?
-
 const OrderContext = createContext<OrderContextProps>(null as never);
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -43,11 +39,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 	);
 	const { cartItems, clearShoppingCart } = useCart();
 
-	console.log("Cart Items in Order Context:", cartItems);
-
 	const handleOrderSubmit = async (customerData: Customer) => {
-		// console.log("Handle Order Submit Called");
-		console.log("Cart Items in handleOrderSubmit:", cartItems);
 		const orderId = Date.now().toString();
 		const orderDate = new Date().toLocaleDateString();
 		const totalPrice = cartItems.reduce(
@@ -65,18 +57,13 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
 		try {
 			setOrder(order);
-			console.log("Order:", order);
-			console.log("Cart Items before clearing:", cartItems);
 		} catch (error) {
 			console.log(error);
 		}
 
 		setConfirmedOrderItems(cartItems);
-		console.log("Confirmed Order Items:", confirmedOrderItems);
-
 		clearShoppingCart();
 		console.log("Cart Items after clearing:", confirmedOrderItems);
-		console.log("Cart Items after clearing in handleOrderSubmit:", cartItems);
 	};
 
 	const orderValues: OrderContextProps = {
