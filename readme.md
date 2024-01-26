@@ -24,7 +24,7 @@ Om du inte redan har nedanstående tillägg behöver du även installera dessa.
 npm install react-icons
 npm install yup
 npm install formik
-npm install Chakra-ui
+npm install npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
 npm install react-router-dom
 ```
 
